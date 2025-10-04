@@ -47,7 +47,10 @@
         "next": "远征"
     },
     // 循环任务
-    // "收远征": {
-    //     "custom_action": "my_task.py",
-    // },
+    "收远征": {
+        // "recognition": "TemplateMatch",
+        // "template": "收远征.png",
+        "action": "Custom",
+        "custom_action": "MyAct",
+    },
 }

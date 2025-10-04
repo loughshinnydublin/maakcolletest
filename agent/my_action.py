@@ -3,7 +3,7 @@ from maa.custom_action import CustomAction
 from maa.context import Context
 
 
-@AgentServer.custom_action("my_action_111")
+@AgentServer.custom_action("MyAct")
 class MyCustomAction(CustomAction):
 
     def run(
@@ -12,6 +12,6 @@ class MyCustomAction(CustomAction):
         argv: CustomAction.RunArg,
     ) -> bool:
 
-        print("my_action_111 is running!")
-
+        print("My custom action is running...")
         return True
+
