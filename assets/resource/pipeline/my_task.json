@@ -1,11 +1,53 @@
 {
-    "MyTask1": {},
-    "MyTask2": {},
-    "MyTask3": {},
-    "MyTask4": {
-        "recognition": "Custom",
-        "custom_recognition": "my_reco_222",
-        "action": "Custom",
-        "custom_action": "my_action_111"
-    }
+    "game start": {
+        "recognition": "TemplateMatch",
+        "template": "start.png",
+        "action": "Click",
+        "next": "出击"
+    },
+    "远征完成": {
+        "recognition": "TemplateMatch",
+        "template": "expedition_complete.png",
+        "action": "Click",
+        // "next": "done"  //确认
+    },
+    "done": {
+        "recognition": "TemplateMatch",
+        "template": "done.png",
+        "action": "Click",
+        "next": "远征完成"
+    },
+    "远征02": {
+        "recognition": "TemplateMatch",
+        "template": "远征02.png",
+        "action": "Click",
+        "next": "决定"
+    },
+    "决定": {
+        "recognition": "TemplateMatch",
+        "template": "决定.png",
+        "action": "Click",
+        "next": "远征开始"
+    },
+    "远征开始": {
+        "recognition": "TemplateMatch",
+        "template": "远征开始.png",
+        "action": "Click",
+    },
+    "远征": {
+        "recognition": "TemplateMatch",
+        "template": "远征.png",
+        "action": "Click",
+        "next": "远征02"
+    },
+    "出击": {
+        "recognition": "TemplateMatch",
+        "template": "出击.png",
+        "action": "Click",
+        "next": "远征"
+    },
+    // 循环任务
+    // "收远征": {
+    //     "custom_action": "my_task.py",
+    // },
 }
