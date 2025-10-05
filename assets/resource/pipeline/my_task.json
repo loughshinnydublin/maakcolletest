@@ -1,56 +1,952 @@
 {
-    "game start": {
-        "recognition": "TemplateMatch",
-        "template": "start.png",
-        "action": "Click",
-        "next": "出击"
+    "__mpe_config_5-2+收发远征": {
+        "__mpe_code": {
+            "prefix": "",
+            "filename": "5-2+收发远征",
+            "version": "v0.5.3"
+        }
     },
-    "远征完成": {
-        "recognition": "TemplateMatch",
-        "template": "expedition_complete.png",
-        "action": "Click",
-        // "next": "done"  //确认
-    },
-    "done": {
-        "recognition": "TemplateMatch",
-        "template": "done.png",
-        "action": "Click",
-        "next": "远征完成"
+    "主菜单": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -1866,
+                "y": -352
+            }
+        },
+        "next": [
+            "远征归来",
+            "远征队准备完成",
+            "主页-出击"
+        ]
     },
     "远征02": {
-        "recognition": "TemplateMatch",
-        "template": "远征02.png",
-        "action": "Click",
-        "next": "决定"
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "远征02.png"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 244,
+                "y": -323
+            }
+        },
+        "next": [
+            "决定"
+        ],
+        "interrupt": [
+            "远征-南方"
+        ]
     },
     "决定": {
-        "recognition": "TemplateMatch",
-        "template": "决定.png",
-        "action": "Click",
-        "next": "远征开始"
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "决定.png"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 678,
+                "y": 187
+            }
+        },
+        "next": [
+            "所选队伍现在远征中"
+        ],
+        "interrupt": [
+            "远征开始"
+        ]
     },
-    "远征开始": {
-        "recognition": "TemplateMatch",
-        "template": "远征开始.png",
-        "action": "Click",
+    "所选队伍现在远征中": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "远征中.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 1203,
+                "y": 198
+            }
+        },
+        "interrupt": [
+            "远征开始"
+        ],
+        "next": [
+            "切3队",
+            "切4队"
+        ],
+        "on_error": [
+            "左上角"
+        ]
+    },
+    "远征-出击": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "出击.png"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -1092,
+                "y": -306
+            }
+        },
+        "next": [
+            "远征"
+        ]
+    },
+    "远征归来": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "远征归来"
+                ]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -1373,
+                "y": -528
+            }
+        },
+        "next": [
+            "收远征"
+        ],
+        "interrupt": [
+            "补给"
+        ]
+    },
+    "收远征": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -795,
+                "y": -754
+            }
+        },
+        "next": [
+            "次"
+        ]
+    },
+    "1队": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -357,
+                "y": -1520
+            }
+        },
+        "next": [
+            "补给1"
+        ]
+    },
+    "次": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "次"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -1190,
+                "y": -1061
+            }
+        },
+        "next": [
+            "次",
+            "远征归来"
+        ]
+    },
+    "补给": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "补给"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -790,
+                "y": -532
+            }
+        },
+        "next": [
+            "1队"
+        ]
+    },
+    "补给1": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -353,
+                "y": -1381
+            }
+        },
+        "next": [
+            "2队"
+        ]
+    },
+    "4队": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -366,
+                "y": -718
+            }
+        },
+        "next": [
+            "补给4"
+        ]
+    },
+    "补给4": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -373,
+                "y": -581
+            }
+        },
+        "next": [
+            "左上角"
+        ]
+    },
+    "左上角": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 13,
+                "y": 445
+            }
+        },
+        "next": [
+            "主菜单"
+        ]
+    },
+    "远征队准备完成": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": [
+                    "准备完成"
+                ]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -1372,
+                "y": -366
+            }
+        },
+        "next": [
+            "远征-出击"
+        ]
     },
     "远征": {
-        "recognition": "TemplateMatch",
-        "template": "远征.png",
-        "action": "Click",
-        "next": "远征02"
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "远征.jpg"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -432,
+                "y": -329
+            }
+        },
+        "next": [
+            "远征02",
+            "远征-南方"
+        ]
     },
-    "出击": {
-        "recognition": "TemplateMatch",
-        "template": "出击.png",
-        "action": "Click",
-        "next": "远征"
+    "战斗-出击": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "战斗-出击.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -1180,
+                "y": 122
+            }
+        },
+        "next": [
+            "战斗-南方"
+        ]
     },
-    // 循环任务
-    "收远征": {
-        // "recognition": "TemplateMatch",
-        // "template": "收远征.png",
-        "action": "Custom",
-        "custom_action": "MyAct",
+    "远征-南方": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -26,
+                "y": -75
+            }
+        },
+        "next": [
+            "远征37",
+            "远征38"
+        ]
     },
+    "远征37": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "远征37.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 239,
+                "y": -113
+            }
+        },
+        "next": [
+            "决定"
+        ],
+        "interrupt": [
+            "远征38"
+        ]
+    },
+    "远征38": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "远征38.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 250,
+                "y": 78
+            }
+        },
+        "next": [
+            "决定"
+        ],
+        "interrupt": [
+            "左上角"
+        ]
+    },
+    "战斗-南方": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -451,
+                "y": 1077
+            }
+        },
+        "next": [
+            "5-2"
+        ]
+    },
+    "5-2": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -173,
+                "y": 911
+            }
+        },
+        "next": [
+            "出击确定"
+        ]
+    },
+    "出击确定": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "决定.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 77,
+                "y": 755
+            }
+        },
+        "next": [
+            "存在大破",
+            "出击开始"
+        ]
+    },
+    "出击开始": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ""
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 368,
+                "y": 584
+            }
+        },
+        "next": [
+            "罗盘"
+        ]
+    },
+    "罗盘": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "luopan.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 604,
+                "y": 713
+            }
+        },
+        "next": [
+            "选择阵型"
+        ]
+    },
+    "选择阵型": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "复纵阵.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 857,
+                "y": 716
+            }
+        },
+        "next": [
+            "战斗结束-次"
+        ]
+    },
+    "战斗结束-次": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "次.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 1131,
+                "y": 715
+            }
+        },
+        "next": [
+            "战斗结束-次",
+            "撤退"
+        ]
+    },
+    "撤退": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "撤退.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 1454,
+                "y": 773
+            }
+        },
+        "next": [
+            "主菜单"
+        ]
+    },
+    "存在大破": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "旗舰大破.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 339,
+                "y": 995
+            }
+        },
+        "next": [
+            "侧边栏入渠"
+        ]
+    },
+    "第一栏": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 1081,
+                "y": 1028
+            }
+        },
+        "next": [
+            "定位大破舰"
+        ]
+    },
+    "定位大破舰": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "大破.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 1383,
+                "y": 1058
+            }
+        },
+        "next": [
+            "修复桶"
+        ]
+    },
+    "修复桶": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 1392,
+                "y": 1345
+            }
+        },
+        "next": [
+            "开始修复"
+        ]
+    },
+    "开始修复": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "入渠kaishi.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 1632,
+                "y": 1559
+            }
+        },
+        "next": [
+            "修复确认"
+        ]
+    },
+    "修复确认": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "入渠确认.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 1634,
+                "y": 1862
+            }
+        },
+        "next": [
+            "左上角"
+        ]
+    },
+    "侧边栏入渠": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 703,
+                "y": 1181
+            }
+        },
+        "next": [
+            "第一栏"
+        ]
+    },
+    "2队": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -354,
+                "y": -1262
+            }
+        },
+        "next": [
+            "补给2"
+        ]
+    },
+    "补给2": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -352,
+                "y": -1136
+            }
+        },
+        "next": [
+            "3队"
+        ]
+    },
+    "3队": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -355,
+                "y": -1012
+            }
+        },
+        "next": [
+            "补给3"
+        ]
+    },
+    "补给3": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -356,
+                "y": -866
+            }
+        },
+        "next": [
+            "4队"
+        ]
+    },
+    "切3队": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "plot3.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 1208,
+                "y": -175
+            }
+        },
+        "next": [
+            "所选队伍现在远征中"
+        ]
+    },
+    "远征开始": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "远征开始.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_delay": 300,
+        "__mpe_code": {
+            "position": {
+                "x": 1494,
+                "y": 412
+            }
+        },
+        "next": [
+            "左上角"
+        ]
+    },
+    "切4队": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "plot4.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 1220,
+                "y": -335
+            }
+        },
+        "next": [
+            "所选队伍现在远征中"
+        ]
+    },
+    "主页-出击": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "主页-出击.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -1475,
+                "y": 74
+            }
+        },
+        "next": [
+            "战斗-出击"
+        ]
+    }
 }
