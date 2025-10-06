@@ -159,7 +159,14 @@
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    21,
+                    177,
+                    621,
+                    312
+                ]
+            }
         },
         "__mpe_code": {
             "position": {
@@ -195,7 +202,7 @@
             "type": "TemplateMatch",
             "param": {
                 "template": [
-                    "次"
+                    "次.png"
                 ]
             }
         },
@@ -244,7 +251,14 @@
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
         },
         "__mpe_code": {
             "position": {
@@ -263,7 +277,14 @@
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
         },
         "__mpe_code": {
             "position": {
@@ -282,7 +303,14 @@
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
         },
         "__mpe_code": {
             "position": {
@@ -301,7 +329,14 @@
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    5,
+                    165,
+                    64,
+                    62
+                ]
+            }
         },
         "__mpe_code": {
             "position": {
@@ -390,7 +425,14 @@
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    265,
+                    531,
+                    32,
+                    14
+                ]
+            }
         },
         "__mpe_code": {
             "position": {
@@ -462,7 +504,14 @@
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    371,
+                    526,
+                    36,
+                    17
+                ]
+            }
         },
         "__mpe_code": {
             "position": {
@@ -481,7 +530,14 @@
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
         },
         "__mpe_code": {
             "position": {
@@ -521,7 +577,7 @@
         "recognition": {
             "type": "TemplateMatch",
             "param": {
-                "template": ""
+                "template": "出击开始.png"
             }
         },
         "action": {
@@ -661,7 +717,14 @@
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
         },
         "__mpe_code": {
             "position": {
@@ -703,7 +766,14 @@
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
         },
         "__mpe_code": {
             "position": {
@@ -768,7 +838,14 @@
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
         },
         "__mpe_code": {
             "position": {
@@ -787,7 +864,14 @@
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
         },
         "__mpe_code": {
             "position": {
@@ -806,7 +890,14 @@
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
         },
         "__mpe_code": {
             "position": {
@@ -825,7 +916,14 @@
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
         },
         "__mpe_code": {
             "position": {
@@ -844,7 +942,14 @@
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            }
         },
         "__mpe_code": {
             "position": {
