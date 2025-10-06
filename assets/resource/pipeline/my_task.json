@@ -552,7 +552,99 @@
         },
         "next": [
             "存在大破",
+            "空油弹",
             "出击开始"
+        ]
+    },
+    "空油弹": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "空油弹.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 2900,
+                "y": 1285
+            }
+        },
+        "next": [
+            "侧边栏补给"
+        ]
+    },
+    "侧边栏补给": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "侧边栏补给.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 3190,
+                "y": 1285
+            }
+        },
+        "next": [
+            "1队_副本1"
+        ]
+    },
+    "1队_副本1": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 3480,
+                "y": 1300
+            }
+        },
+        "next": [
+            "补给1_副本2"
+        ]
+    },
+    "补给1_副本2": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    90,
+                    251,
+                    18,
+                    17
+                ]
+            }
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 3770,
+                "y": 1285
+            }
+        },
+        "next": [
+            "左上角"
         ]
     },
     "出击开始": {
@@ -1066,5 +1158,19 @@
         "next": [
             "主菜单"
         ]
+    },
+    "detect-click": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": [
+                    "点我测试"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        }
     }
 }
