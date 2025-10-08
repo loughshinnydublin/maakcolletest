@@ -9,7 +9,7 @@
             "type": "Win32",
             "win32": {
                 "class_regex": ".*",
-                "window_regex": "Visual Studio"
+                "window_regex": "poi"
             }
         }
     ],
@@ -57,6 +57,10 @@
         {
             "name": "带Custom的任务",
             "entry": "MyTask4"
+        },
+        {
+            "name":"5-2",
+            "entry":"start"
         }
     ],
     "option": {
