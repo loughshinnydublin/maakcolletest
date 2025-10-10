@@ -528,7 +528,7 @@
             "type": "Click",
             "param": {}
         },
-        "post_delay": 400,
+        "timeout": 600,
         "__mpe_code": {
             "position": {
                 "x": 4350,
@@ -659,7 +659,10 @@
         "recognition": {
             "type": "TemplateMatch",
             "param": {
-                "template": "出击开始.png"
+                "template": [
+                    "出击开始1.png",
+                    "出击开始2.png"
+                ]
             }
         },
         "action": {
@@ -689,7 +692,7 @@
             "type": "Click",
             "param": {}
         },
-        "post_delay": 500,
+        "timeout": 1000,
         "__mpe_code": {
             "position": {
                 "x": 5220,
@@ -743,7 +746,8 @@
             }
         },
         "next": [
-            "战斗结束-次"
+            "战斗结束-次",
+            "撤退"
         ]
     },
     "战斗结束-次": {
@@ -765,8 +769,11 @@
                 "y": 1358
             }
         },
+        "timeout": 600,
         "next": [
-            "战斗结束-次",
+            "战斗结束-次"
+        ],
+        "on_error": [
             "撤退"
         ]
     },
