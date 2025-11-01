@@ -1223,8 +1223,8 @@
         "timeout": 5000,
         "__mpe_code": {
             "position": {
-                "x": 1743,
-                "y": 438
+                "x": 1709,
+                "y": 454
             }
         },
         "next": [
@@ -1253,8 +1253,8 @@
         "post_delay": 400,
         "__mpe_code": {
             "position": {
-                "x": 5860,
-                "y": 400
+                "x": 5846,
+                "y": 454
             }
         },
         "next": [
@@ -1417,6 +1417,7 @@
             "type": "DoNothing",
             "param": {}
         },
+        "pre_wait_freezes": 500,
         "__mpe_code": {
             "position": {
                 "x": 4930,
@@ -1443,11 +1444,11 @@
                 ]
             }
         },
-        "post_delay": 500,
+        "post_wait_freezes": 500,
         "__mpe_code": {
             "position": {
-                "x": 5220,
-                "y": 268
+                "x": 5225,
+                "y": 271
             }
         },
         "next": [
@@ -1472,8 +1473,8 @@
         "post_delay": 500,
         "__mpe_code": {
             "position": {
-                "x": 3480,
-                "y": 0
+                "x": 3444,
+                "y": 18
             }
         },
         "next": [
@@ -1504,18 +1505,25 @@
             "等待陣型"
         ]
     },
-    "选择阵型": {
+    "选择阵型1": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
                 "template": [
-                    "复纵阵.png"
+                    "警戒阵.png"
                 ]
             }
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    555,
+                    439,
+                    73,
+                    15
+                ]
+            }
         },
         "__mpe_code": {
             "position": {
@@ -1544,8 +1552,8 @@
         "timeout": 5000,
         "__mpe_code": {
             "position": {
-                "x": 870,
-                "y": 320
+                "x": 1161,
+                "y": 570
             }
         },
         "next": [
@@ -1622,8 +1630,8 @@
         "timeout": 3000,
         "__mpe_code": {
             "position": {
-                "x": 4063,
-                "y": 558
+                "x": 4070,
+                "y": 589
             }
         },
         "next": [
@@ -1799,7 +1807,7 @@
             "type": "DoNothing",
             "param": {}
         },
-        "timeout": 10000,
+        "timeout": 5000,
         "__mpe_code": {
             "position": {
                 "x": 1160,
@@ -1822,7 +1830,7 @@
             "type": "DoNothing",
             "param": {}
         },
-        "timeout": 50000,
+        "timeout": 65000,
         "__mpe_code": {
             "position": {
                 "x": 634,
@@ -1845,14 +1853,45 @@
         "timeout": 50000,
         "__mpe_code": {
             "position": {
-                "x": -317,
-                "y": -247
+                "x": -338,
+                "y": -237
             }
         },
         "next": [
-            "选择阵型"
+            "选择阵型1",
+            "选择阵型2"
         ],
         "on_error": [
+            "战斗中"
+        ]
+    },
+    "选择阵型2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "复纵阵.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    500,
+                    308,
+                    75,
+                    14
+                ]
+            }
+        },
+        "__mpe_code": {
+            "position": {
+                "x": -26,
+                "y": 187
+            }
+        },
+        "next": [
             "战斗中"
         ]
     }
