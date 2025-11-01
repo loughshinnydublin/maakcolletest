@@ -1,4 +1,1216 @@
+// {
+//     "主菜单": {
+//         "recognition": {
+//             "type": "DirectHit",
+//             "param": {}
+//         },
+//         "action": {
+//             "type": "DoNothing",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 3190,
+//                 "y": 989
+//             }
+//         },
+//         "next": [
+//             "远征归来",
+//             "远征队准备完成",
+//             "需要补给",
+//             "主页-出击"
+//         ]
+//     },
+//     "远征02": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": "远征02.png"
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 4350,
+//                 "y": 902
+//             }
+//         },
+//         "next": [
+//             "决定"
+//         ],
+//         "interrupt": [
+//             "远征-南方"
+//         ]
+//     },
+//     "决定": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": "决定.png"
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 5510,
+//                 "y": 828
+//             }
+//         },
+//         "next": [
+//             "所选队伍现在远征中"
+//         ],
+//         "interrupt": [
+//             "远征开始"
+//         ]
+//     },
+//     "所选队伍现在远征中": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "远征中.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "DoNothing",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 5800,
+//                 "y": 662
+//             }
+//         },
+//         "next": [
+//             "切3队",
+//             "切4队"
+//         ],
+//         "interrupt": [
+//             "远征开始"
+//         ],
+//         "on_error": [
+//             "左上角"
+//         ]
+//     },
+//     "远征-出击": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": "主页-出击.png"
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 3770,
+//                 "y": 858
+//             }
+//         },
+//         "next": [
+//             "远征"
+//         ]
+//     },
+//     "远征归来": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "收远征.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "DoNothing",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 3480,
+//                 "y": 226
+//             }
+//         },
+//         "next": [
+//             "收远征"
+//         ],
+//         "interrupt": [
+//             "需要补给"
+//         ]
+//     },
+//     "收远征": {
+//         "recognition": {
+//             "type": "DirectHit",
+//             "param": {}
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {
+//                 "target": [
+//                     21,
+//                     177,
+//                     621,
+//                     312
+//                 ]
+//             }
+//         },
+//         "post_delay": 400,
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 3770,
+//                 "y": 270
+//             }
+//         },
+//         "next": [
+//             "次"
+//         ]
+//     },
+//     "1队": {
+//         "recognition": {
+//             "type": "DirectHit",
+//             "param": {}
+//         },
+//         "action": {
+//             "type": "DoNothing",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 580,
+//                 "y": 571
+//             }
+//         },
+//         "next": [
+//             "补给1"
+//         ]
+//     },
+//     "次": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "次.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 4060,
+//                 "y": 226
+//             }
+//         },
+//         "interrupt": [
+//             "主菜单"
+//         ],
+//         "next": [
+//             "次"
+//         ]
+//     },
+//     "补给": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "补给.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 290,
+//                 "y": 556
+//             }
+//         },
+//         "next": [
+//             "1队"
+//         ]
+//     },
+//     "补给1": {
+//         "recognition": {
+//             "type": "DirectHit",
+//             "param": {}
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {
+//                 "target": [
+//                     90,
+//                     251,
+//                     18,
+//                     17
+//                 ]
+//             }
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 870,
+//                 "y": 556
+//             }
+//         },
+//         "next": [
+//             "2队"
+//         ]
+//     },
+//     "4队": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "plot4.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 2320,
+//                 "y": 556
+//             }
+//         },
+//         "next": [
+//             "补给4"
+//         ]
+//     },
+//     "补给4": {
+//         "recognition": {
+//             "type": "DirectHit",
+//             "param": {}
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {
+//                 "target": [
+//                     90,
+//                     251,
+//                     18,
+//                     17
+//                 ]
+//             }
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 2610,
+//                 "y": 556
+//             }
+//         },
+//         "next": [
+//             "左上角"
+//         ]
+//     },
+//     "左上角": {
+//         "recognition": {
+//             "type": "DirectHit",
+//             "param": {}
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {
+//                 "target": [
+//                     5,
+//                     165,
+//                     64,
+//                     62
+//                 ]
+//             }
+//         },
+//         "post_delay": 400,
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 2900,
+//                 "y": 556
+//             }
+//         },
+//         "next": [
+//             "主菜单"
+//         ]
+//     },
+//     "远征队准备完成": {
+//         "recognition": {
+//             "type": "OCR",
+//             "param": {
+//                 "expected": [
+//                     "准备完成"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "DoNothing",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 3480,
+//                 "y": 858
+//             }
+//         },
+//         "next": [
+//             "远征-出击"
+//         ]
+//     },
+//     "远征": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "远征.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 4060,
+//                 "y": 858
+//             }
+//         },
+//         "next": [
+//             "远征02",
+//             "远征-南方"
+//         ]
+//     },
+//     "战斗-出击": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "战斗-出击.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 3770,
+//                 "y": 1090
+//             }
+//         },
+//         "next": [
+//             "战斗-南方"
+//         ]
+//     },
+//     "远征-南方": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "远征-南方.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 4640,
+//                 "y": 788
+//             }
+//         },
+//         "next": [
+//             "远征37",
+//             "远征38"
+//         ]
+//     },
+//     "远征37": {
+//         "recognition": {
+//             "type": "DirectHit",
+//             "param": {}
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {
+//                 "target": [
+//                     146,
+//                     394,
+//                     131,
+//                     21
+//                 ]
+//             }
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 4930,
+//                 "y": 840
+//             }
+//         },
+//         "next": [
+//             "决定"
+//         ],
+//         "interrupt": [
+//             "远征38"
+//         ]
+//     },
+//     "远征38": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "远征38.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 5220,
+//                 "y": 724
+//             }
+//         },
+//         "next": [
+//             "决定"
+//         ],
+//         "interrupt": [
+//             "左上角"
+//         ]
+//     },
+//     "战斗-南方": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "战斗-南方.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 4060,
+//                 "y": 1090
+//             }
+//         },
+//         "next": [
+//             "5-2"
+//         ]
+//     },
+//     "5-2": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "5-2.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "timeout": 600,
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 4350,
+//                 "y": 1090
+//             }
+//         },
+//         "next": [
+//             "出击确定"
+//         ]
+//     },
+//     "出击确定": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "决定.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 4640,
+//                 "y": 1090
+//             }
+//         },
+//         "next": [
+//             "存在大破",
+//             "空油弹",
+//             "出击开始"
+//         ]
+//     },
+//     "空油弹": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "空油弹.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "DoNothing",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 4930,
+//                 "y": 516
+//             }
+//         },
+//         "next": [
+//             "侧边栏补给"
+//         ]
+//     },
+//     "侧边栏补给": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "侧边栏补给.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 5220,
+//                 "y": 516
+//             }
+//         },
+//         "next": [
+//             "1队_副本1"
+//         ]
+//     },
+//     "1队_副本1": {
+//         "recognition": {
+//             "type": "DirectHit",
+//             "param": {}
+//         },
+//         "action": {
+//             "type": "DoNothing",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 5510,
+//                 "y": 531
+//             }
+//         },
+//         "next": [
+//             "补给1_副本2"
+//         ]
+//     },
+//     "补给1_副本2": {
+//         "recognition": {
+//             "type": "DirectHit",
+//             "param": {}
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {
+//                 "target": [
+//                     90,
+//                     251,
+//                     18,
+//                     17
+//                 ]
+//             }
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 5800,
+//                 "y": 464
+//             }
+//         },
+//         "next": [
+//             "左上角"
+//         ]
+//     },
+//     "出击开始": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "出击开始1.png",
+//                     "出击开始2.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 4930,
+//                 "y": 1358
+//             }
+//         },
+//         "next": [
+//             "罗盘"
+//         ]
+//     },
+//     "罗盘": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "罗盘.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "timeout": 1000,
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 5220,
+//                 "y": 1343
+//             }
+//         },
+//         "next": [
+//             "选择阵型"
+//         ],
+//         "interrupt": [
+//             "战斗中"
+//         ]
+//     },
+//     "选择阵型": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "复纵阵.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 5510,
+//                 "y": 1306
+//             }
+//         },
+//         "next": [
+//             "战斗中"
+//         ]
+//     },
+//     "战斗中": {
+//         "recognition": {
+//             "type": "DirectHit",
+//             "param": {}
+//         },
+//         "action": {
+//             "type": "DoNothing",
+//             "param": {}
+//         },
+//         "timeout": 600,
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 5800,
+//                 "y": 1358
+//             }
+//         },
+//         "next": [
+//             "战斗结束-次",
+//             "撤退"
+//         ]
+//     },
+//     "战斗结束-次": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "次.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 6090,
+//                 "y": 1358
+//             }
+//         },
+//         "timeout": 600,
+//         "next": [
+//             "战斗结束-次"
+//         ],
+//         "on_error": [
+//             "撤退"
+//         ]
+//     },
+//     "撤退": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "撤退.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 6380,
+//                 "y": 1338
+//             }
+//         },
+//         "next": [
+//             "主菜单"
+//         ]
+//     },
+//     "存在大破": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "旗舰大破.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "DoNothing",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 4930,
+//                 "y": 1596
+//             }
+//         },
+//         "next": [
+//             "侧边栏入渠"
+//         ]
+//     },
+//     "第一栏": {
+//         "recognition": {
+//             "type": "DirectHit",
+//             "param": {}
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {
+//                 "target": [
+//                     148,
+//                     281,
+//                     128,
+//                     29
+//                 ]
+//             }
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 5510,
+//                 "y": 1596
+//             }
+//         },
+//         "next": [
+//             "定位大破舰"
+//         ]
+//     },
+//     "定位大破舰": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "大破.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 5800,
+//                 "y": 1596
+//             }
+//         },
+//         "next": [
+//             "修复桶"
+//         ]
+//     },
+//     "修复桶": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "修复桶.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 6090,
+//                 "y": 1596
+//             }
+//         },
+//         "next": [
+//             "开始修复"
+//         ]
+//     },
+//     "开始修复": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "入渠开始.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 6380,
+//                 "y": 1596
+//             }
+//         },
+//         "next": [
+//             "修复确认"
+//         ]
+//     },
+//     "修复确认": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "入渠确认.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 6670,
+//                 "y": 1583
+//             }
+//         },
+//         "next": [
+//             "左上角"
+//         ]
+//     },
+//     "侧边栏入渠": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "侧边栏入渠.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 5220,
+//                 "y": 1596
+//             }
+//         },
+//         "next": [
+//             "第一栏"
+//         ]
+//     },
+//     "2队": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "plot2.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 1160,
+//                 "y": 556
+//             }
+//         },
+//         "next": [
+//             "补给2"
+//         ]
+//     },
+//     "补给2": {
+//         "recognition": {
+//             "type": "DirectHit",
+//             "param": {}
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {
+//                 "target": [
+//                     90,
+//                     251,
+//                     18,
+//                     17
+//                 ]
+//             }
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 1450,
+//                 "y": 556
+//             }
+//         },
+//         "next": [
+//             "3队"
+//         ]
+//     },
+//     "3队": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "plot3.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 1740,
+//                 "y": 556
+//             }
+//         },
+//         "next": [
+//             "补给3"
+//         ]
+//     },
+//     "补给3": {
+//         "recognition": {
+//             "type": "DirectHit",
+//             "param": {}
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {
+//                 "target": [
+//                     90,
+//                     251,
+//                     18,
+//                     17
+//                 ]
+//             }
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 2030,
+//                 "y": 556
+//             }
+//         },
+//         "next": [
+//             "4队"
+//         ]
+//     },
+//     "切3队": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "plot3.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "post_delay": 400,
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 6090,
+//                 "y": 0
+//             }
+//         },
+//         "next": [
+//             "所选队伍现在远征中"
+//         ],
+//         "interrupt": [
+//             "远征开始"
+//         ]
+//     },
+//     "远征开始": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "远征开始.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "post_delay": 600,
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 6380,
+//                 "y": 637
+//             }
+//         },
+//         "next": [
+//             "左上角"
+//         ]
+//     },
+//     "切4队": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "plot4.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 6090,
+//                 "y": 662
+//             }
+//         },
+//         "next": [
+//             "远征开始"
+//         ]
+//     },
+//     "主页-出击": {
+//         "recognition": {
+//             "type": "TemplateMatch",
+//             "param": {
+//                 "template": [
+//                     "主页-出击.png"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "Click",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 3480,
+//                 "y": 1090
+//             }
+//         },
+//         "next": [
+//             "战斗-出击"
+//         ]
+//     },
+//     "start": {
+//         "recognition": {
+//             "type": "DirectHit",
+//             "param": {}
+//         },
+//         "action": {
+//             "type": "DoNothing",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 2900,
+//                 "y": 1001
+//             }
+//         },
+//         "next": [
+//             "主菜单"
+//         ]
+//     },
+//     "需要补给": {
+//         "recognition": {
+//             "type": "OCR",
+//             "param": {
+//                 "expected": [
+//                     "需要补给"
+//                 ]
+//             }
+//         },
+//         "action": {
+//             "type": "DoNothing",
+//             "param": {}
+//         },
+//         "__mpe_code": {
+//             "position": {
+//                 "x": 0,
+//                 "y": 608
+//             }
+//         },
+//         "next": [
+//             "补给"
+//         ]
+//     }
+// }
+// --------------------------------------------------------------------
 {
+    "__mpe_config_新建Pipeline4": {
+        "__mpe_code": {
+            "prefix": "",
+            "filename": "新建Pipeline4",
+            "version": "v0.5.5"
+        }
+    },
     "主菜单": {
         "recognition": {
             "type": "DirectHit",
@@ -8,311 +1220,17 @@
             "type": "DoNothing",
             "param": {}
         },
+        "timeout": 5000,
         "__mpe_code": {
             "position": {
-                "x": 3190,
-                "y": 989
+                "x": 1743,
+                "y": 438
             }
         },
         "next": [
-            "远征归来",
-            "远征队准备完成",
-            "需要补给",
             "主页-出击"
-        ]
-    },
-    "远征02": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": "远征02.png"
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {}
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 4350,
-                "y": 902
-            }
-        },
-        "next": [
-            "决定"
-        ],
-        "interrupt": [
-            "远征-南方"
-        ]
-    },
-    "决定": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": "决定.png"
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {}
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 5510,
-                "y": 828
-            }
-        },
-        "next": [
-            "所选队伍现在远征中"
-        ],
-        "interrupt": [
-            "远征开始"
-        ]
-    },
-    "所选队伍现在远征中": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": [
-                    "远征中.png"
-                ]
-            }
-        },
-        "action": {
-            "type": "DoNothing",
-            "param": {}
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 5800,
-                "y": 662
-            }
-        },
-        "next": [
-            "切3队",
-            "切4队"
-        ],
-        "interrupt": [
-            "远征开始"
         ],
         "on_error": [
-            "左上角"
-        ]
-    },
-    "远征-出击": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": "主页-出击.png"
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {}
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 3770,
-                "y": 858
-            }
-        },
-        "next": [
-            "远征"
-        ]
-    },
-    "远征归来": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": [
-                    "收远征.png"
-                ]
-            }
-        },
-        "action": {
-            "type": "DoNothing",
-            "param": {}
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 3480,
-                "y": 226
-            }
-        },
-        "next": [
-            "收远征"
-        ],
-        "interrupt": [
-            "需要补给"
-        ]
-    },
-    "收远征": {
-        "recognition": {
-            "type": "DirectHit",
-            "param": {}
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    21,
-                    177,
-                    621,
-                    312
-                ]
-            }
-        },
-        "post_delay": 400,
-        "__mpe_code": {
-            "position": {
-                "x": 3770,
-                "y": 270
-            }
-        },
-        "next": [
-            "次"
-        ]
-    },
-    "1队": {
-        "recognition": {
-            "type": "DirectHit",
-            "param": {}
-        },
-        "action": {
-            "type": "DoNothing",
-            "param": {}
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 580,
-                "y": 571
-            }
-        },
-        "next": [
-            "补给1"
-        ]
-    },
-    "次": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": [
-                    "次.png"
-                ]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {}
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 4060,
-                "y": 226
-            }
-        },
-        "interrupt": [
-            "主菜单"
-        ],
-        "next": [
-            "次"
-        ]
-    },
-    "补给": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": [
-                    "补给.png"
-                ]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {}
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 290,
-                "y": 556
-            }
-        },
-        "next": [
-            "1队"
-        ]
-    },
-    "补给1": {
-        "recognition": {
-            "type": "DirectHit",
-            "param": {}
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    90,
-                    251,
-                    18,
-                    17
-                ]
-            }
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 870,
-                "y": 556
-            }
-        },
-        "next": [
-            "2队"
-        ]
-    },
-    "4队": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": [
-                    "plot4.png"
-                ]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {}
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 2320,
-                "y": 556
-            }
-        },
-        "next": [
-            "补给4"
-        ]
-    },
-    "补给4": {
-        "recognition": {
-            "type": "DirectHit",
-            "param": {}
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    90,
-                    251,
-                    18,
-                    17
-                ]
-            }
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 2610,
-                "y": 556
-            }
-        },
-        "next": [
             "左上角"
         ]
     },
@@ -335,59 +1253,12 @@
         "post_delay": 400,
         "__mpe_code": {
             "position": {
-                "x": 2900,
-                "y": 556
+                "x": 5860,
+                "y": 400
             }
         },
         "next": [
             "主菜单"
-        ]
-    },
-    "远征队准备完成": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "expected": [
-                    "准备完成"
-                ]
-            }
-        },
-        "action": {
-            "type": "DoNothing",
-            "param": {}
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 3480,
-                "y": 858
-            }
-        },
-        "next": [
-            "远征-出击"
-        ]
-    },
-    "远征": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": [
-                    "远征.png"
-                ]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {}
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 4060,
-                "y": 858
-            }
-        },
-        "next": [
-            "远征02",
-            "远征-南方"
         ]
     },
     "战斗-出击": {
@@ -405,91 +1276,12 @@
         },
         "__mpe_code": {
             "position": {
-                "x": 3770,
-                "y": 1090
+                "x": 2320,
+                "y": 268
             }
         },
         "next": [
             "战斗-南方"
-        ]
-    },
-    "远征-南方": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": [
-                    "远征-南方.png"
-                ]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {}
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 4640,
-                "y": 788
-            }
-        },
-        "next": [
-            "远征37",
-            "远征38"
-        ]
-    },
-    "远征37": {
-        "recognition": {
-            "type": "DirectHit",
-            "param": {}
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    146,
-                    394,
-                    131,
-                    21
-                ]
-            }
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 4930,
-                "y": 840
-            }
-        },
-        "next": [
-            "决定"
-        ],
-        "interrupt": [
-            "远征38"
-        ]
-    },
-    "远征38": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": [
-                    "远征38.png"
-                ]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {}
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 5220,
-                "y": 724
-            }
-        },
-        "next": [
-            "决定"
-        ],
-        "interrupt": [
-            "左上角"
         ]
     },
     "战斗-南方": {
@@ -507,8 +1299,8 @@
         },
         "__mpe_code": {
             "position": {
-                "x": 4060,
-                "y": 1090
+                "x": 2610,
+                "y": 268
             }
         },
         "next": [
@@ -528,11 +1320,12 @@
             "type": "Click",
             "param": {}
         },
-        "timeout": 600,
+        "timeout": 20000,
+        "post_delay": 500,
         "__mpe_code": {
             "position": {
-                "x": 4350,
-                "y": 1090
+                "x": 2900,
+                "y": 253
             }
         },
         "next": [
@@ -552,16 +1345,21 @@
             "type": "Click",
             "param": {}
         },
+        "timeout": 20000,
+        "post_delay": 1000,
         "__mpe_code": {
             "position": {
-                "x": 4640,
-                "y": 1090
+                "x": 3190,
+                "y": 238
             }
         },
         "next": [
-            "存在大破",
             "空油弹",
+            "存在大破",
             "出击开始"
+        ],
+        "interrupt": [
+            "出击确定"
         ]
     },
     "空油弹": {
@@ -579,8 +1377,8 @@
         },
         "__mpe_code": {
             "position": {
-                "x": 4930,
-                "y": 516
+                "x": 4350,
+                "y": 268
             }
         },
         "next": [
@@ -602,8 +1400,8 @@
         },
         "__mpe_code": {
             "position": {
-                "x": 5220,
-                "y": 516
+                "x": 4640,
+                "y": 268
             }
         },
         "next": [
@@ -621,8 +1419,8 @@
         },
         "__mpe_code": {
             "position": {
-                "x": 5510,
-                "y": 531
+                "x": 4930,
+                "y": 283
             }
         },
         "next": [
@@ -645,10 +1443,11 @@
                 ]
             }
         },
+        "post_delay": 500,
         "__mpe_code": {
             "position": {
-                "x": 5800,
-                "y": 464
+                "x": 5220,
+                "y": 268
             }
         },
         "next": [
@@ -669,10 +1468,12 @@
             "type": "Click",
             "param": {}
         },
+        "timeout": 10000,
+        "post_delay": 500,
         "__mpe_code": {
             "position": {
-                "x": 4930,
-                "y": 1358
+                "x": 3480,
+                "y": 0
             }
         },
         "next": [
@@ -692,18 +1493,15 @@
             "type": "Click",
             "param": {}
         },
-        "timeout": 1000,
+        "timeout": 5000,
         "__mpe_code": {
             "position": {
-                "x": 5220,
-                "y": 1343
+                "x": 3770,
+                "y": 52
             }
         },
         "next": [
-            "选择阵型"
-        ],
-        "interrupt": [
-            "战斗中"
+            "等待陣型"
         ]
     },
     "选择阵型": {
@@ -721,33 +1519,12 @@
         },
         "__mpe_code": {
             "position": {
-                "x": 5510,
-                "y": 1306
+                "x": -33,
+                "y": -3
             }
         },
         "next": [
             "战斗中"
-        ]
-    },
-    "战斗中": {
-        "recognition": {
-            "type": "DirectHit",
-            "param": {}
-        },
-        "action": {
-            "type": "DoNothing",
-            "param": {}
-        },
-        "timeout": 600,
-        "__mpe_code": {
-            "position": {
-                "x": 5800,
-                "y": 1358
-            }
-        },
-        "next": [
-            "战斗结束-次",
-            "撤退"
         ]
     },
     "战斗结束-次": {
@@ -755,7 +1532,8 @@
             "type": "TemplateMatch",
             "param": {
                 "template": [
-                    "次.png"
+                    "次.png",
+                    "战斗结算.png"
                 ]
             }
         },
@@ -763,18 +1541,15 @@
             "type": "Click",
             "param": {}
         },
+        "timeout": 5000,
         "__mpe_code": {
             "position": {
-                "x": 6090,
-                "y": 1358
+                "x": 870,
+                "y": 320
             }
         },
-        "timeout": 600,
         "next": [
-            "战斗结束-次"
-        ],
-        "on_error": [
-            "撤退"
+            "战斗结束缓冲"
         ]
     },
     "撤退": {
@@ -790,10 +1565,11 @@
             "type": "Click",
             "param": {}
         },
+        "timeout": 5000,
         "__mpe_code": {
             "position": {
-                "x": 6380,
-                "y": 1338
+                "x": 1450,
+                "y": 283
             }
         },
         "next": [
@@ -815,8 +1591,8 @@
         },
         "__mpe_code": {
             "position": {
-                "x": 4930,
-                "y": 1596
+                "x": 3480,
+                "y": 456
             }
         },
         "next": [
@@ -825,8 +1601,12 @@
     },
     "第一栏": {
         "recognition": {
-            "type": "DirectHit",
-            "param": {}
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "入渠栏位.png"
+                ]
+            }
         },
         "action": {
             "type": "Click",
@@ -839,10 +1619,11 @@
                 ]
             }
         },
+        "timeout": 3000,
         "__mpe_code": {
             "position": {
-                "x": 5510,
-                "y": 1596
+                "x": 4063,
+                "y": 558
             }
         },
         "next": [
@@ -862,10 +1643,11 @@
             "type": "Click",
             "param": {}
         },
+        "post_delay": 500,
         "__mpe_code": {
             "position": {
-                "x": 5800,
-                "y": 1596
+                "x": 4351,
+                "y": 463
             }
         },
         "next": [
@@ -887,8 +1669,8 @@
         },
         "__mpe_code": {
             "position": {
-                "x": 6090,
-                "y": 1596
+                "x": 4623,
+                "y": 542
             }
         },
         "next": [
@@ -910,8 +1692,8 @@
         },
         "__mpe_code": {
             "position": {
-                "x": 6380,
-                "y": 1596
+                "x": 4918,
+                "y": 518
             }
         },
         "next": [
@@ -931,10 +1713,11 @@
             "type": "Click",
             "param": {}
         },
+        "post_wait_freezes": 50,
         "__mpe_code": {
             "position": {
-                "x": 6670,
-                "y": 1583
+                "x": 5213,
+                "y": 502
             }
         },
         "next": [
@@ -954,186 +1737,15 @@
             "type": "Click",
             "param": {}
         },
+        "post_delay": 500,
         "__mpe_code": {
             "position": {
-                "x": 5220,
-                "y": 1596
+                "x": 3767,
+                "y": 459
             }
         },
         "next": [
             "第一栏"
-        ]
-    },
-    "2队": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": [
-                    "plot2.png"
-                ]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {}
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 1160,
-                "y": 556
-            }
-        },
-        "next": [
-            "补给2"
-        ]
-    },
-    "补给2": {
-        "recognition": {
-            "type": "DirectHit",
-            "param": {}
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    90,
-                    251,
-                    18,
-                    17
-                ]
-            }
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 1450,
-                "y": 556
-            }
-        },
-        "next": [
-            "3队"
-        ]
-    },
-    "3队": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": [
-                    "plot3.png"
-                ]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {}
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 1740,
-                "y": 556
-            }
-        },
-        "next": [
-            "补给3"
-        ]
-    },
-    "补给3": {
-        "recognition": {
-            "type": "DirectHit",
-            "param": {}
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [
-                    90,
-                    251,
-                    18,
-                    17
-                ]
-            }
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 2030,
-                "y": 556
-            }
-        },
-        "next": [
-            "4队"
-        ]
-    },
-    "切3队": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": [
-                    "plot3.png"
-                ]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {}
-        },
-        "post_delay": 400,
-        "__mpe_code": {
-            "position": {
-                "x": 6090,
-                "y": 0
-            }
-        },
-        "next": [
-            "所选队伍现在远征中"
-        ],
-        "interrupt": [
-            "远征开始"
-        ]
-    },
-    "远征开始": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": [
-                    "远征开始.png"
-                ]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {}
-        },
-        "post_delay": 600,
-        "__mpe_code": {
-            "position": {
-                "x": 6380,
-                "y": 637
-            }
-        },
-        "next": [
-            "左上角"
-        ]
-    },
-    "切4队": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": [
-                    "plot4.png"
-                ]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {}
-        },
-        "__mpe_code": {
-            "position": {
-                "x": 6090,
-                "y": 662
-            }
-        },
-        "next": [
-            "远征开始"
         ]
     },
     "主页-出击": {
@@ -1151,8 +1763,8 @@
         },
         "__mpe_code": {
             "position": {
-                "x": 3480,
-                "y": 1090
+                "x": 2030,
+                "y": 268
             }
         },
         "next": [
@@ -1170,35 +1782,78 @@
         },
         "__mpe_code": {
             "position": {
-                "x": 2900,
-                "y": 1001
+                "x": 1450,
+                "y": 523
             }
         },
         "next": [
             "主菜单"
         ]
     },
-    "需要补给": {
+    "战斗结束缓冲": {
         "recognition": {
-            "type": "OCR",
-            "param": {
-                "expected": [
-                    "需要补给"
-                ]
-            }
+            "type": "DirectHit",
+            "param": {}
         },
         "action": {
             "type": "DoNothing",
             "param": {}
         },
+        "timeout": 10000,
         "__mpe_code": {
             "position": {
-                "x": 0,
-                "y": 608
+                "x": 1160,
+                "y": 298
             }
         },
         "next": [
-            "补给"
+            "撤退"
+        ],
+        "interrupt": [
+            "战斗结束-次"
+        ]
+    },
+    "战斗中": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "timeout": 50000,
+        "__mpe_code": {
+            "position": {
+                "x": 634,
+                "y": 114
+            }
+        },
+        "next": [
+            "战斗结束-次"
+        ]
+    },
+    "等待陣型": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "timeout": 50000,
+        "__mpe_code": {
+            "position": {
+                "x": -317,
+                "y": -247
+            }
+        },
+        "next": [
+            "选择阵型"
+        ],
+        "on_error": [
+            "战斗中"
         ]
     }
 }
