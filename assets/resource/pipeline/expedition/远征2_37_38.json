@@ -1,0 +1,8 @@
+// 主页expect需要补给
+{
+    "远征2_37_38": {
+        "rate_limit": 1000,
+        "post_delay": 500,
+        "on_error": "Screenshot"
+    }
+}

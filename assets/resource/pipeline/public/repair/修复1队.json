@@ -1,0 +1,8 @@
+// 入渠，定位1队的大破、中破，浇桶
+{
+    "修复1队": {
+        "rate_limit": 1000,
+        "post_delay": 500,
+        "on_error": "Screenshot"
+    }
+}

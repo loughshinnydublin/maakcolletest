@@ -1,0 +1,29 @@
+{
+    "public_撤退": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "撤退.png"
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "timeout": 5000,
+        "__mpe_code": {
+            "position": {
+                "x": 1450,
+                "y": 283
+            }
+        },
+        "next": [
+            "主菜单"
+        ],
+        "on_error": [
+            "左上角"
+        ]
+    }
+}

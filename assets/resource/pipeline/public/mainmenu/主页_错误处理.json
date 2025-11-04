@@ -1,0 +1,8 @@
+// 主页收远征
+{
+    "主页_错误处理": {
+        "rate_limit": 1000,
+        "post_delay": 500,
+        "on_error": "Screenshot"
+    }
+}

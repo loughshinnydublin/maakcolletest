@@ -1,10 +1,6 @@
 {
     "controller": [
         {
-            "name": "安卓端",
-            "type": "Adb"
-        },
-        {
             "name": "桌面端",
             "type": "Win32",
             "win32": {
@@ -28,7 +24,7 @@
             ]
         }
     ],
-    "agent_demo": {
+    "agent": {
         "child_exec": "python",
         "child_args": [
             "{PROJECT_DIR}/agent/main.py"
@@ -56,11 +52,11 @@
         },
         {
             "name": "带Custom的任务",
-            "entry": "MyTask4"
+            "entry": "Default"
         },
         {
-            "name":"5-2",
-            "entry":"start"
+            "name": "5-2",
+            "entry": "start"
         }
     ],
     "option": {

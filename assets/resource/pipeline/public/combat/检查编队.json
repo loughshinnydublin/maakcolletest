@@ -1,0 +1,8 @@
+// 进入编队查看是否存在大破、中破
+{
+    "检查编队": {
+        "rate_limit": 1000,
+        "post_delay": 500,
+        "on_error": "Screenshot"
+    }
+}
