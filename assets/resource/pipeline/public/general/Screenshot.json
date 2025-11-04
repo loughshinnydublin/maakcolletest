@@ -4,7 +4,6 @@
         "custom_action": "Screenshot",
         "custom_action_param": {
             "save_dir": "debug/error"
-        },
-        "focus": true
+        }
     }
 }
