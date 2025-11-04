@@ -9,9 +9,15 @@ from pathlib import Path
 current_dir = Path(__file__).resolve().parent
 interface_path = (current_dir / "../assets/interface.json").resolve()
 print(f"当前目录: {current_dir}")
+project_root_dir = current_dir.parent
+print(f"项目根目录: {project_root_dir}")
 
 if current_dir not in sys.path:
     sys.path.insert(0, current_dir)
+
+
+VENV_NAME = ".venv"  # 虚拟环境目录的名称
+VENV_DIR = Path(project_root_dir) / VENV_NAME
 
 try:
     from utils.logger import custom_logger as logger
@@ -117,30 +123,164 @@ def check_and_install_dependencies():
         logger.info("跳过依赖安装")
 
 
-def agent():
-    from maa.agent.agent_server import AgentServer
-    from maa.toolkit import Toolkit
+def _is_running_in_our_venv():
+    """检查脚本是否在此脚本管理的特定venv中运行。"""
+    current_python = Path(sys.executable).resolve()
 
-    import custom
-    from utils.logger import custom_logger as logger
+    logger.debug(f"当前Python解释器: {current_python}")
 
-    Toolkit.init_option("./")
+    if sys.platform.startswith("win"):
+        # Windows: 如果在虚拟环境中，Python应该在 Scripts 目录下
+        if current_python.parent.name == "Scripts":
+            return True
+        else:
+            logger.debug("当前不在目标虚拟环境中")
+            return False
+    else:
+        # Linux/Unix: 如果在虚拟环境中，Python应该在 bin 目录下
+        if current_python.parent.name == "bin":
+            return True
+        else:
+            logger.debug("当前不在目标虚拟环境中")
+            return False
 
-    socket_id = sys.argv[-1]
+
+def ensure_venv_and_relaunch_if_needed():
+    """
+    确保venv存在，并且如果尚未在脚本管理的venv中运行，
+    则在其中重新启动脚本。支持Linux和Windows系统。
+    """
+    logger.info(f"检测到系统: {sys.platform}。当前Python解释器: {sys.executable}")
+
+    if _is_running_in_our_venv():
+        logger.info(f"已在目标虚拟环境 ({VENV_DIR}) 中运行。")
+        return
+
+    if not VENV_DIR.exists():
+        logger.info(f"正在 {VENV_DIR} 创建虚拟环境...")
+        try:
+            # 使用当前运行此脚本的Python（系统/外部Python）
+            subprocess.run(
+                [sys.executable, "-m", "venv", str(VENV_DIR)],
+                check=True,
+                capture_output=True,
+            )
+            logger.info(f"创建成功")
+        except subprocess.CalledProcessError as e:
+            logger.error(
+                f"创建失败: {e.stderr.decode(errors='ignore') if e.stderr else e.stdout.decode(errors='ignore')}"
+            )
+            logger.error("正在退出")
+            sys.exit(1)
+        except FileNotFoundError:
+            logger.error(
+                f"命令 '{sys.executable} -m venv' 未找到。请确保 'venv' 模块可用。"
+            )
+            logger.error("无法在没有虚拟环境的情况下继续。正在退出。")
+            sys.exit(1)
+
+    if sys.platform.startswith("win"):
+        python_in_venv = VENV_DIR / "Scripts" / "python.exe"
+    else:
+        python3_path = VENV_DIR / "bin" / "python3"
+        python_path = VENV_DIR / "bin" / "python"
+        if python3_path.exists():
+            python_in_venv = python3_path
+        elif python_path.exists():
+            python_in_venv = python_path
+        else:
+            python_in_venv = python3_path  # 默认使用python3，让后续错误处理捕获
+
+    if not python_in_venv.exists():
+        logger.error(f"在虚拟环境 {python_in_venv} 中未找到Python解释器。")
+        logger.error("虚拟环境创建可能失败或虚拟环境结构异常。")
+        sys.exit(1)
+
+    logger.info(f"正在使用虚拟环境Python重新启动")
+
+    try:
+        cmd = [str(python_in_venv)] + sys.argv
+        logger.info(f"执行命令: {' '.join(cmd)}")
+
+        result = subprocess.run(
+            cmd,
+            cwd=os.getcwd(),
+            env=os.environ.copy(),
+            check=False,  # 不在非零退出码时抛出异常
+        )
+        # 退出时使用子进程的退出码
+        sys.exit(result.returncode)
+
+    except Exception as e:
+        logger.exception(f"在虚拟环境中重新启动脚本失败: {e}")
+        sys.exit(1)
 
 
 
+def agent(is_dev_mode=False):
+    try:
+        # 清理模块缓存
+        utils_modules = [
+            name for name in list(sys.modules.keys()) if name.startswith("utils")
+        ]
+        for module_name in utils_modules:
+            del sys.modules[module_name]
 
-    AgentServer.start_up(socket_id)
-    logger.info("AgentSever 启动")
-    AgentServer.join()
-    AgentServer.shut_down()
-    logger.info("AgentSever 关闭")
+        from maa.agent.agent_server import AgentServer
+        from maa.toolkit import Toolkit
+
+        import custom
+
+        Toolkit.init_option("./")
+
+        if len(sys.argv) < 2:
+            if is_dev_mode:
+                # 开发模式下使用默认socket_id进行测试
+                socket_id = "test_socket_id"
+                logger.warning(f"开发模式: 使用默认socket_id: {socket_id}")
+            else:
+                logger.error("缺少必要的 socket_id 参数")
+                logger.error("用法: python main.py <socket_id>")
+                return
+        else:
+            socket_id = sys.argv[-1]
+            logger.info(f"socket_id: {socket_id}")
+
+        AgentServer.start_up(socket_id)
+        logger.info("AgentServer启动")
+        AgentServer.join()
+        AgentServer.shut_down()
+        logger.info("AgentServer关闭")
+    except ImportError as e:
+        logger.error(f"导入模块失败: {e}")
+        logger.error("考虑重新配置环境")
+        sys.exit(1)
+    except Exception as e:
+        logger.exception("agent运行过程中发生异常")
+        raise
+
 
 
 def main():
+
+    # current_version = read_interface_version()
+    current_version = "DEBUG"
+    is_dev_mode = current_version == "DEBUG"
+
+    # 如果是Linux系统或开发模式，启动虚拟环境
+    if sys.platform.startswith("linux") or is_dev_mode:
+        ensure_venv_and_relaunch_if_needed()
+
+    check_and_install_dependencies()
+
+    if is_dev_mode:
+        os.chdir(Path("../assets"))
+        logger.info(f"set cwd: {os.getcwd()}")
+
+    agent(is_dev_mode=is_dev_mode)
+
     # check_and_install_dependencies()
-    agent()
+    # agent()
 
 
 if __name__ == "__main__":
