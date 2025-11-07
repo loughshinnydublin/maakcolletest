@@ -2,7 +2,7 @@
     "5-2C": {
         "__mpe_code": {
             "prefix": "",
-            "filename": "新建Pipeline4",
+            "filename": "5-2C.json",
             "version": "v0.5.5"
         }
     },
@@ -25,7 +25,7 @@
         "next": [
             "主页-出击"
         ],
-        "on_error": [
+        "interrupt":[
             "左上角"
         ]
     },
@@ -292,7 +292,7 @@
             "type": "Click",
             "param": {}
         },
-        "timeout": 5000,
+        "timeout": 10000,
         "__mpe_code": {
             "position": {
                 "x": 3770,
@@ -300,6 +300,7 @@
             }
         },
         "next": [
+            "罗盘",
             "等待陣型"
         ]
     },
@@ -569,7 +570,7 @@
                 ]
             }
         },
-        "timeout": 5000,
+        "timeout":5000,
         "action": {
             "type": "Click",
             "param": {}
@@ -582,9 +583,12 @@
         },
         "next": [
             "战斗-出击"
+        ],
+        "on_error":[
+            "左上角"
         ]
     },
-    "start": {
+    "5-2c": {
         "recognition": {
             "type": "DirectHit",
             "param": {}
@@ -599,7 +603,7 @@
                 "y": 523
             }
         },
-        "on_error": [
+        "on_error":[
             "左上角"
         ],
         "next": [
