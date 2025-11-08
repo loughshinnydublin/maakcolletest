@@ -1,4 +1,5 @@
-from custom.action.include import *
+import os
+import sys
 from loguru import logger
 
 def setup_logger(log_dir="debug/custom"):

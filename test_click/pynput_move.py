@@ -1,8 +1,13 @@
-import pyautogui, random, time, math
+"""
+使用 pynput 实现的人类化鼠标移动
+这样可以被 smooth_move.py 检测到
+"""
+import random
+import time
+import math
+from pynput.mouse import Controller, Button
 
-pyautogui.FAILSAFE = False
-print(pyautogui.size())
-
+mouse = Controller()
 
 def bezier_curve(p0, p1, p2, p3, t):
     """三阶贝塞尔曲线"""
@@ -11,7 +16,7 @@ def bezier_curve(p0, p1, p2, p3, t):
 
 def human_move(x1, y1, x2, y2, duration=0.3, steps=45):
     """
-    更真实的人类鼠标移动模拟
+    更真实的人类鼠标移动模拟（使用 pynput）
     - 使用贝塞尔曲线创建自然路径
     - 非线性速度变化
     - 微小抖动和停顿
@@ -36,7 +41,6 @@ def human_move(x1, y1, x2, y2, duration=0.3, steps=45):
         t = i / steps
         
         # 使用更复杂的缓动函数,模拟真实的加速和减速
-        # 快速启动,中间快速移动,结尾减速
         if t < 0.1:
             # 起始加速
             eased_t = t * 5 * t
@@ -58,23 +62,20 @@ def human_move(x1, y1, x2, y2, duration=0.3, steps=45):
         x += random.uniform(-jitter, jitter)
         y += random.uniform(-jitter, jitter)
         
-        # 计算当前移动距离,用于调整延迟
-        move_dist = math.sqrt((x - prev_x)**2 + (y - prev_y)**2)
-        
         print(f"Step {i}/{steps}: Moving to ({x:.2f}, {y:.2f})")
-        pyautogui.moveTo(int(x), int(y))
+        
+        # 使用 pynput 移动鼠标
+        mouse.position = (int(x), int(y))
         
         prev_x, prev_y = x, y
         
         # 根据移动距离和阶段动态调整延迟
         if t < 0.1 or t > 0.9:
-            # 起始和结束时稍慢
             delay = (duration / steps) * random.uniform(1.0, 1.3)
         else:
-            # 中间移动更快
             delay = (duration / steps) * random.uniform(0.6, 0.9)
         
-        # 偶尔添加微小停顿,模拟人类的不确定性
+        # 偶尔添加微小停顿
         if random.random() < 0.05:
             delay += random.uniform(0.001, 0.01)
         
@@ -83,33 +84,21 @@ def human_move(x1, y1, x2, y2, duration=0.3, steps=45):
 
 def human_drag(x1, y1, x2, y2, duration=0.6, steps=50, button='left'):
     """
-    模拟人类拖动鼠标操作
-    - 先移动到起点
-    - 按下鼠标按键
-    - 使用贝塞尔曲线拖动到终点
-    - 释放鼠标按键
-    
-    参数:
-        x1, y1: 起始坐标
-        x2, y2: 结束坐标
-        duration: 拖动持续时间(秒)
-        steps: 移动步数
-        button: 鼠标按键('left', 'right', 'middle')
+    模拟人类拖动鼠标操作（使用 pynput）
     """
-    # 先移动到起点(不按住鼠标)
+    # 先移动到起点
     print(f"Moving to start position ({x1}, {y1})...")
-    pyautogui.moveTo(x1, y1, duration=0.2)
-    time.sleep(random.uniform(0.05, 0.15))  # 短暂停顿
+    mouse.position = (x1, y1)
+    time.sleep(random.uniform(0.05, 0.15))
     
     # 按下鼠标按键
+    btn = Button.left if button == 'left' else (Button.right if button == 'right' else Button.middle)
     print(f"Pressing {button} button...")
-    # pyautogui.mouseDown(button=button)
-    time.sleep(random.uniform(0.05, 0.1))  # 按下后短暂停顿
+    mouse.press(btn)
+    time.sleep(random.uniform(0.05, 0.1))
     
     # 生成贝塞尔曲线的控制点
     distance = math.sqrt((x2 - x1)**2 + (y2 - y1)**2)
-    
-    # 拖动时的控制点偏移较小,路径更直接
     offset_range = min(distance * 0.15, 50)
     
     cp1_x = x1 + (x2 - x1) * 0.35 + random.uniform(-offset_range, offset_range)
@@ -118,8 +107,6 @@ def human_drag(x1, y1, x2, y2, duration=0.6, steps=50, button='left'):
     cp2_x = x1 + (x2 - x1) * 0.65 + random.uniform(-offset_range, offset_range)
     cp2_y = y1 + (y2 - y1) * 0.65 + random.uniform(-offset_range, offset_range)
     
-    prev_x, prev_y = x1, y1
-    
     # 开始拖动
     print(f"Dragging from ({x1}, {y1}) to ({x2}, {y2})...")
     for i in range(1, steps + 1):
@@ -127,13 +114,10 @@ def human_drag(x1, y1, x2, y2, duration=0.6, steps=50, button='left'):
         
         # 拖动时的缓动曲线
         if t < 0.15:
-            # 起始加速(拖动开始时稍快)
             eased_t = t * 3.5 * t
         elif t > 0.85:
-            # 末尾明显减速(准备释放)
             eased_t = 1 - (1 - t) ** 2.5
         else:
-            # 中间匀速且有轻微波动
             eased_t = t + random.uniform(-0.015, 0.015)
         
         eased_t = max(0, min(1, eased_t))
@@ -142,14 +126,12 @@ def human_drag(x1, y1, x2, y2, duration=0.6, steps=50, button='left'):
         x = bezier_curve(x1, cp1_x, cp2_x, x2, eased_t)
         y = bezier_curve(y1, cp1_y, cp2_y, y2, eased_t)
         
-        # 拖动时的抖动更小,更稳定
+        # 拖动时的抖动更小
         jitter = max(0.5, distance / 300)
         x += random.uniform(-jitter, jitter)
         y += random.uniform(-jitter, jitter)
         
-        pyautogui.moveTo(int(x), int(y))
-        
-        prev_x, prev_y = x, y
+        mouse.position = (int(x), int(y))
         
         # 拖动时的延迟调整
         if t < 0.15 or t > 0.85:
@@ -157,7 +139,6 @@ def human_drag(x1, y1, x2, y2, duration=0.6, steps=50, button='left'):
         else:
             delay = (duration / steps) * random.uniform(0.8, 1.0)
         
-        # 拖动时偶尔有更明显的停顿(模拟调整抓握)
         if random.random() < 0.08:
             delay += random.uniform(0.01, 0.03)
         
@@ -168,37 +149,31 @@ def human_drag(x1, y1, x2, y2, duration=0.6, steps=50, button='left'):
     
     # 释放鼠标按键
     print(f"Releasing {button} button...")
-    pyautogui.mouseUp(button=button)
+    mouse.release(btn)
     print("Drag completed!")
 
 
 def human_drag_right(distance=300, duration=0.6):
-    """
-    向右拖动鼠标的便捷函数
-    
-    参数:
-        distance: 向右拖动的距离(像素)
-        duration: 拖动持续时间(秒)
-    """
-    start_x, start_y = pyautogui.position()
+    """向右拖动鼠标的便捷函数"""
+    start_x, start_y = mouse.position
     end_x = start_x + distance
-    # Y轴有轻微随机偏移,模拟真实拖动
     end_y = start_y + random.randint(-2, 2)
     
     human_drag(start_x, start_y, end_x, end_y, duration=duration)
 
 
 if __name__ == "__main__":
-
-    # print("=== 测试1: 普通鼠标移动 ===")
-    # start_x, start_y = pyautogui.position()
+    print("当前鼠标位置:", mouse.position)
+    
+    # print("\n=== 测试1: 普通鼠标移动 ===")
+    # start_x, start_y = mouse.position
     # end_x = start_x + random.randint(-300, 300)
     # end_y = start_y + random.randint(-200, 200)
     # print(f"Moving from ({start_x}, {start_y}) to ({end_x}, {end_y})")
     # human_move(start_x, start_y, end_x, end_y)
     # print("Movement completed!\n")
     
-    time.sleep(1)  # 两个测试之间暂停
+    time.sleep(1)
     
     print("=== 测试2: 向右拖动鼠标 ===")
     print("将在3秒后开始拖动,请准备...")

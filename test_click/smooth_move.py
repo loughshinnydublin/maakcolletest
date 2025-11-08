@@ -13,6 +13,8 @@ pip install pynput numpy scipy pandas
 运行：
 python mouse_realness_detector.py
 按 Ctrl+C 或 Esc 停止记录（可在代码中修改停止键/时长）
+
+注意：此版本使用轮询方式，可以检测到 pyautogui 生成的鼠标移动！
 """
 
 import time
@@ -22,9 +24,10 @@ import sys
 from collections import deque
 
 try:
-    from pynput import mouse, keyboard
+    from pynput import keyboard
+    import pyautogui  # 用于轮询鼠标位置
 except Exception as e:
-    print("需要安装 pynput：pip install pynput")
+    print("需要安装依赖：pip install pynput pyautogui")
     raise
 
 # 可选依赖
@@ -46,34 +49,45 @@ SAVE_CSV = True             # 是否保存轨迹到 CSV
 CSV_PATH = "mouse_trace.csv"
 RESULT_DETAIL_CSV = "mouse_metrics.csv"  # 可选详细特征导出
 SPEED_LOW_THRESHOLD = 5.0   # px/s 以下视作静止（用于检测停顿）
+POLLING_INTERVAL = 0.005    # 轮询间隔（秒），5ms = 200Hz 采样率
 # --------------------------------
 
 class MouseRecorder:
-    def __init__(self):
+    """
+    使用轮询方式记录鼠标位置，可以检测到所有鼠标移动，包括 pyautogui 生成的
+    """
+    def __init__(self, polling_interval=POLLING_INTERVAL):
         self.points = []  # (t, x, y)
         self._lock = threading.Lock()
         self._running = False
-        self._listener = None
+        self._poll_thread = None
         self._kbd_listener = None
+        self.polling_interval = polling_interval
+        pyautogui.FAILSAFE = False  # 禁用 pyautogui 的安全机制
 
-    def _on_move(self, x, y):
-        with self._lock:
-            self.points.append((time.time(), float(x), float(y)))
-
-    def _on_click(self, x, y, button, pressed):
-        # 也记录点击时间点（方便后续分析）
-        with self._lock:
-            self.points.append((time.time(), float(x), float(y), 'click', str(button), pressed))
-
-    def _on_scroll(self, x, y, dx, dy):
-        with self._lock:
-            self.points.append((time.time(), float(x), float(y), 'scroll', dx, dy))
+    def _poll_mouse_position(self):
+        """轮询鼠标位置的线程函数"""
+        last_pos = None
+        while self._running:
+            try:
+                current_pos = pyautogui.position()
+                # 只记录位置发生变化的点，避免大量重复数据
+                if current_pos != last_pos:
+                    with self._lock:
+                        self.points.append((time.time(), float(current_pos[0]), float(current_pos[1])))
+                    last_pos = current_pos
+                time.sleep(self.polling_interval)
+            except Exception as e:
+                print(f"轮询错误: {e}")
+                break
 
     def start(self):
         self._running = True
-        # 使用 pynput mouse listener
-        self._listener = mouse.Listener(on_move=self._on_move, on_click=self._on_click, on_scroll=self._on_scroll)
-        self._listener.start()
+        
+        # 启动轮询线程
+        self._poll_thread = threading.Thread(target=self._poll_mouse_position, daemon=True)
+        self._poll_thread.start()
+        
         # keyboard listener to stop
         if STOP_KEY is not None:
             def on_press(key):
@@ -83,24 +97,20 @@ class MouseRecorder:
                     return False
             self._kbd_listener = keyboard.Listener(on_press=on_press)
             self._kbd_listener.start()
-        print("开始记录鼠标轨迹，按 Esc 停止（或 Ctrl+C）...")
+        
+        print(f"开始记录鼠标轨迹（轮询模式，采样率 {1/self.polling_interval:.0f}Hz），按 Esc 停止（或 Ctrl+C）...")
+        print("✅ 可以检测到 pyautogui 生成的鼠标移动！")
 
     def stop(self):
         self._running = False
-        if self._listener:
-            self._listener.stop()
+        if self._poll_thread:
+            self._poll_thread.join(timeout=1.0)
         if self._kbd_listener:
             self._kbd_listener.stop()
 
     def get_points(self):
         with self._lock:
-            # 规范化输出：只保留 (t,x,y) 的连续点（即跳过 click/scroll 记录）
-            pts = []
-            for item in self.points:
-                if len(item) >= 3 and isinstance(item[0], float):
-                    # If extra fields exist (click/scroll), the first 3 are t,x,y
-                    pts.append((item[0], float(item[1]), float(item[2])))
-            return pts
+            return list(self.points)
 
 # -------- 特征计算与判定逻辑 --------
 def compute_metrics(points):
@@ -376,4 +386,5 @@ def main():
     print("最终判定：", verdict)
 
 if __name__ == "__main__":
+    time.sleep(1)  # 启动延迟，方便切换窗口
     main()
