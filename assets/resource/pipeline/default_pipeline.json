@@ -23,6 +23,16 @@
             "duration": 1500
         }
     },
+    "OverrideRefresh": {
+        "action": "Custom",
+        "custom_action": "OverrideRefresh",
+        "custom_action_param": {}
+    },
+    "gamestart": {
+        "action": "Custom",
+        "custom_action": "gamestart",
+        "custom_action_param": {}
+    },
     "swipe": {
         "recognition": {
             "type": "DirectHit",
