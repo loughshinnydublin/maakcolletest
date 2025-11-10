@@ -7,7 +7,7 @@ from pynput.mouse import Button
 
 @AgentServer.custom_action("SmoothMove")
 class SmoothMove(CustomAction):
-    print("✅ SmoothMove 自定义动作已加载")
+    print(" SmoothMove 自定义动作已加载")
 
     """
     参数格式:

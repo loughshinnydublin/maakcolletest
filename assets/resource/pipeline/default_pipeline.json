@@ -2,7 +2,7 @@
     "Default": {
         "rate_limit": 1000,
         "post_delay": 500,
-        "on_error": "SmoothMove"
+        "on_error": "Screenshot"
     },
     "SmoothMove": {
         "action": "Custom",

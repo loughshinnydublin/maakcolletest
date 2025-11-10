@@ -10,9 +10,14 @@ from pynput.mouse import Controller, Button
 
 mouse = Controller()
 
+# 在模块加载时打印信息
+logger.info("正在加载 general.py 模块...")
+logger.info(f"AgentServer 类型: {type(AgentServer)}")
+logger.info(f"AgentServer 是否有 custom_action: {hasattr(AgentServer, 'custom_action')}")
+
 @AgentServer.custom_action("Screenshot")
 class Screenshot(CustomAction):
-    print("✅ Screenshot 自定义动作已加载")
+    logger.info("Screenshot 类定义完成，装饰器已执行")
 
     
     """
@@ -61,7 +66,7 @@ class Screenshot(CustomAction):
     
 @AgentServer.custom_action("gamestart")
 class gamestart(CustomAction):
-    print("✅ gamestart 自定义动作已加载")
+    logger.info(" gamestart 类定义完成，装饰器已执行")
 
     """
     自定义动作：启动游戏
@@ -82,7 +87,7 @@ class gamestart(CustomAction):
 
 @AgentServer.custom_action("OverrideRefresh")
 class OverrideRefresh(CustomAction):
-    print("✅ OverrideRefresh 自定义动作已加载")
+    logger.info(" OverrideRefresh 类定义完成，装饰器已执行")
 
     """
     自定义动作：重新载入游戏页面
@@ -100,6 +105,36 @@ class OverrideRefresh(CustomAction):
         mouse.click(Button.right, 1)
 
         logger.info(f"重新载入游戏页面")
+
+        # gamestart匹配
+        context.run_task("gamestart")
+        logger.info(f"游戏页面载入完成，目前应处于主页面")
+
+        return CustomAction.RunResult(success=True)
+    
+
+@AgentServer.custom_action("normalRefresh")
+class normalRefresh(CustomAction):
+    logger.info(" normalRefresh 类定义完成，装饰器已执行")
+
+    """
+    自定义动作：正常刷新游戏页面
+    shift+左键点击poi刷新按钮，载入后匹配gamestart
+    """
+
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> CustomAction.RunResult:
+
+        # 刷新按钮坐标
+        mouse.position = (251, 855)
+        mouse.press(Button.shift)
+        mouse.click(Button.left, 1)
+        mouse.release(Button.shift)
+
+        logger.info(f"正常刷新游戏页面")
 
         # gamestart匹配
         context.run_task("gamestart")

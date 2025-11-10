@@ -219,9 +219,10 @@ def ensure_venv_and_relaunch_if_needed():
 
 def agent(is_dev_mode=False):
     try:
-        # 清理模块缓存
+        # 清理模块缓存（但不清理 custom 模块）
         utils_modules = [
-            name for name in list(sys.modules.keys()) if name.startswith("utils")
+            name for name in list(sys.modules.keys()) 
+            if name.startswith("utils") and not name.startswith("custom")
         ]
         for module_name in utils_modules:
             del sys.modules[module_name]
@@ -229,7 +230,10 @@ def agent(is_dev_mode=False):
         from maa.agent.agent_server import AgentServer
         from maa.toolkit import Toolkit
 
+        # 重要：在 AgentServer 导入后立即导入 custom 以注册装饰器
         import custom
+        
+        logger.info("Custom actions 模块已加载")
 
         Toolkit.init_option("./")
 
@@ -263,9 +267,11 @@ def agent(is_dev_mode=False):
 
 def main():
 
-    # current_version = read_interface_version()
-    current_version = "DEBUG"
+    current_version = read_interface_version()
+    # current_version = "DEBUG"  # 取消注释此行以启用开发模式
     is_dev_mode = current_version == "DEBUG"
+    
+    logger.info(f"当前版本: {current_version}, 开发模式: {is_dev_mode}")
 
     # 如果是Linux系统或开发模式，启动虚拟环境
     if sys.platform.startswith("linux") or is_dev_mode:
@@ -277,7 +283,7 @@ def main():
         os.chdir(Path("../assets"))
         logger.info(f"set cwd: {os.getcwd()}")
 
-    agent(is_dev_mode=is_dev_mode)
+    # agent(is_dev_mode=is_dev_mode)
 
     # check_and_install_dependencies()
     # agent()
