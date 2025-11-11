@@ -2,6 +2,46 @@ import json
 import time
 import random
 from datetime import datetime
+# from .include import *
+
+
+
+
+# @AgentServer.custom_action("AutoExpedition")
+# class AutoExpedition(CustomAction):
+#     logger.info(" AutoExpedition 类定义完成，装饰器已执行")
+
+#     """
+#     自定义动作：自动远征
+#     参数形式: 
+#     {
+#         "exp1": "2队进行的远征序号",
+#         "exp2": "3队进行的远征序号",
+#         "exp3": "4队进行的远征序号"
+#     }
+#     """
+
+#     def run(
+#         self,
+#         context: Context,
+#         argv: CustomAction.RunArg,
+#     ) -> CustomAction.RunResult:
+
+#         logger.info(f"AutoExpedition 开始运行")
+#         logger.info(f"参数: {argv.custom_action_param}")
+
+#         # 读取任务配置
+#         exp1 = json.loads(argv.custom_action_param)["exp1"]
+#         exp2 = json.loads(argv.custom_action_param)["exp2"]
+#         exp3 = json.loads(argv.custom_action_param)["exp3"]
+
+
+
+
+
+#         return CustomAction.RunResult(success=True)
+
+
 
 # ===============================
 # 模拟 JSON 配置
@@ -11,11 +51,11 @@ task_config = {
     "entry": "MyTask3",
     "option": {
         "fleets": [
-            {"id": 2, "duration": 30},   # 单位秒
-            {"id": 5, "duration": 50},
-            {"id": 6, "duration": 80}
+            {"id": 2, "duration": 12},   # 单位秒
+            {"id": 5, "duration": 20},
+            {"id": 6, "duration": 15}
         ],
-        "check_interval": 5
+        "check_interval": 10
     }
 }
 
@@ -27,7 +67,7 @@ def check_expedition_complete(fleet_id: int) -> bool:
     模拟检测远征是否完成
     模板匹配
     """
-    return random.random() < 0.7  # 70% 概率识别为完成
+    return 1 
 
 # ===============================
 # 收取奖励

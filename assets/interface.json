@@ -44,9 +44,11 @@
         },
         {
             "name": "参数任务",
-            "entry": "MyTask3",
+            "entry": "test_option",
             "option": [
-                "任务选项1"
+                "exp1",
+                "exp2",
+                "exp3"
             ],
             "pipeline_override": {}
         },

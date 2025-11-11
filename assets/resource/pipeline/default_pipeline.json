@@ -62,5 +62,16 @@
                 "y": 259
             }
         }
+    },
+    "test_option": {
+        "action": "Custom",
+        "custom_action": "AutoExpedition",
+        "custom_action_param": {
+            "option": [
+                "exp1",
+                "exp2",
+                "exp3"
+            ]
+        }
     }
 }
