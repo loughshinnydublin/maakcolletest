@@ -3,5 +3,82 @@
         "rate_limit": 1000,
         "post_delay": 500,
         "on_error": "Screenshot"
+    },
+    "SmoothMove": {
+        "action": "Custom",
+        "custom_action": "SmoothMove",
+        "custom_action_param": {
+            "begin": [
+                235,
+                281,
+                134,
+                34
+            ],
+            "end": [
+                395,
+                272,
+                262,
+                82
+            ],
+            "duration": 1500
+        }
+    },
+    "OverrideRefresh": {
+        "action": "Custom",
+        "custom_action": "OverrideRefresh",
+        "custom_action_param": {}
+    },
+    "gamestart": {
+        "action": "Custom",
+        "custom_action": "gamestart",
+        "custom_action_param": {}
+    },
+    "swipe": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [
+                    235,
+                    281,
+                    134,
+                    34
+                ],
+                "end": [
+                    395,
+                    272,
+                    262,
+                    82
+                ],
+                "duration": 1500
+            }
+        },
+        "__mpe_code": {
+            "position": {
+                "x": 216,
+                "y": 259
+            }
+        }
+    },
+    "test_option": {
+        "action": "Custom",
+        "custom_action": "AutoExpedition",
+        "custom_action_param": {
+            "option": [
+                "exp1",
+                "exp2",
+                "exp3"
+            ]
+        }
+    },
+    "StartCombinedTasks": {
+        "action": "Custom",
+        "custom_action": "combinedtest",
+        "next": [
+            "Screenshot"
+        ]
     }
 }

@@ -29,7 +29,5 @@ from maa.context import Context
 # 任务计数器
 Task_Counter = 0
 
-#################### 日志控制开关 ####################
 
-Enable_MaaLog_Debug = 0
-Enable_MaaLog_Info = 1
+from utils.logger import custom_logger as logger

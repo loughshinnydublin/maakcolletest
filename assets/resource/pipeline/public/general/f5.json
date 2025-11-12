@@ -1,0 +1,8 @@
+// 重新载入游戏界面
+{
+    "重新载入游戏界面": {
+        "rate_limit": 1000,
+        "post_delay": 500,
+        "on_error": "Screenshot"
+    }
+}

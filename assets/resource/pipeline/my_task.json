@@ -2,7 +2,7 @@
     "5-2C": {
         "__mpe_code": {
             "prefix": "",
-            "filename": "新建Pipeline4",
+            "filename": "5-2c",
             "version": "v0.5.5"
         }
     },
@@ -16,10 +16,11 @@
             "param": {}
         },
         "timeout": 5000,
+        "pre_wait_freezes": 200,
         "__mpe_code": {
             "position": {
-                "x": 1709,
-                "y": 454
+                "x": 580,
+                "y": 0
             }
         },
         "next": [
@@ -45,11 +46,11 @@
                 ]
             }
         },
-        "post_delay": 400,
+        "pre_wait_freezes": 500,
         "__mpe_code": {
             "position": {
-                "x": 5846,
-                "y": 454
+                "x": 5220,
+                "y": 804
             }
         },
         "next": [
@@ -71,8 +72,8 @@
         },
         "__mpe_code": {
             "position": {
-                "x": 2320,
-                "y": 268
+                "x": 1160,
+                "y": 189
             }
         },
         "next": [
@@ -94,8 +95,8 @@
         },
         "__mpe_code": {
             "position": {
-                "x": 2610,
-                "y": 268
+                "x": 1450,
+                "y": 189
             }
         },
         "next": [
@@ -122,8 +123,8 @@
         "post_delay": 500,
         "__mpe_code": {
             "position": {
-                "x": 2900,
-                "y": 253
+                "x": 1740,
+                "y": 159
             }
         },
         "next": [
@@ -144,20 +145,16 @@
             "param": {}
         },
         "timeout": 20000,
+        "pre_delay": 500,
         "post_delay": 1000,
         "__mpe_code": {
             "position": {
-                "x": 3190,
-                "y": 238
+                "x": 2030,
+                "y": 159
             }
         },
         "next": [
-            "空油弹",
-            "存在大破",
-            "出击开始"
-        ],
-        "interrupt": [
-            "出击确定"
+            "出击开始_longpress"
         ]
     },
     "空油弹": {
@@ -175,8 +172,8 @@
         },
         "__mpe_code": {
             "position": {
-                "x": 4350,
-                "y": 268
+                "x": 4060,
+                "y": 293
             }
         },
         "next": [
@@ -198,8 +195,8 @@
         },
         "__mpe_code": {
             "position": {
-                "x": 4640,
-                "y": 268
+                "x": 4350,
+                "y": 293
             }
         },
         "next": [
@@ -218,8 +215,8 @@
         "pre_wait_freezes": 500,
         "__mpe_code": {
             "position": {
-                "x": 4930,
-                "y": 283
+                "x": 4640,
+                "y": 293
             }
         },
         "next": [
@@ -245,8 +242,8 @@
         "post_wait_freezes": 500,
         "__mpe_code": {
             "position": {
-                "x": 5225,
-                "y": 271
+                "x": 4930,
+                "y": 278
             }
         },
         "next": [
@@ -271,8 +268,8 @@
         "post_delay": 500,
         "__mpe_code": {
             "position": {
-                "x": 3444,
-                "y": 18
+                "x": 2900,
+                "y": 417
             }
         },
         "next": [
@@ -290,16 +287,26 @@
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    5,
+                    162,
+                    660,
+                    393
+                ]
+            }
         },
-        "timeout": 5000,
+        "timeout": 10000,
+        "post_wait_freezes": 500,
+        "pre_wait_freezes": 500,
         "__mpe_code": {
             "position": {
-                "x": 3770,
-                "y": 52
+                "x": 3190,
+                "y": 402
             }
         },
         "next": [
+            "罗盘",
             "等待陣型"
         ]
     },
@@ -325,8 +332,8 @@
         },
         "__mpe_code": {
             "position": {
-                "x": -33,
-                "y": -3
+                "x": 3770,
+                "y": 432
             }
         },
         "next": [
@@ -345,13 +352,20 @@
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    5,
+                    162,
+                    660,
+                    393
+                ]
+            }
         },
         "timeout": 5000,
         "__mpe_code": {
             "position": {
-                "x": 1161,
-                "y": 570
+                "x": 4350,
+                "y": 650
             }
         },
         "next": [
@@ -375,10 +389,11 @@
             "param": {}
         },
         "timeout": 5000,
+        "post_delay": 1000,
         "__mpe_code": {
             "position": {
-                "x": 1450,
-                "y": 283
+                "x": 4930,
+                "y": 635
             }
         },
         "next": [
@@ -403,8 +418,8 @@
         },
         "__mpe_code": {
             "position": {
-                "x": 3480,
-                "y": 456
+                "x": 3190,
+                "y": 938
             }
         },
         "next": [
@@ -434,8 +449,8 @@
         "timeout": 3000,
         "__mpe_code": {
             "position": {
-                "x": 4070,
-                "y": 589
+                "x": 3770,
+                "y": 908
             }
         },
         "next": [
@@ -458,8 +473,8 @@
         "post_delay": 500,
         "__mpe_code": {
             "position": {
-                "x": 4351,
-                "y": 463
+                "x": 4060,
+                "y": 923
             }
         },
         "next": [
@@ -477,12 +492,19 @@
         },
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {
+                "target": [
+                    584,
+                    396,
+                    59,
+                    11
+                ]
+            }
         },
         "__mpe_code": {
             "position": {
-                "x": 4623,
-                "y": 542
+                "x": 4350,
+                "y": 938
             }
         },
         "next": [
@@ -504,8 +526,8 @@
         },
         "__mpe_code": {
             "position": {
-                "x": 4918,
-                "y": 518
+                "x": 4640,
+                "y": 938
             }
         },
         "next": [
@@ -528,8 +550,8 @@
         "post_wait_freezes": 50,
         "__mpe_code": {
             "position": {
-                "x": 5213,
-                "y": 502
+                "x": 4930,
+                "y": 923
             }
         },
         "next": [
@@ -552,8 +574,8 @@
         "post_delay": 500,
         "__mpe_code": {
             "position": {
-                "x": 3767,
-                "y": 459
+                "x": 3480,
+                "y": 923
             }
         },
         "next": [
@@ -569,19 +591,22 @@
                 ]
             }
         },
-        "timeout": 5000,
         "action": {
             "type": "Click",
             "param": {}
         },
+        "timeout": 5000,
         "__mpe_code": {
             "position": {
-                "x": 2030,
-                "y": 268
+                "x": 870,
+                "y": 174
             }
         },
         "next": [
             "战斗-出击"
+        ],
+        "on_error": [
+            "左上角"
         ]
     },
     "start": {
@@ -595,15 +620,15 @@
         },
         "__mpe_code": {
             "position": {
-                "x": 1450,
-                "y": 523
+                "x": 290,
+                "y": 1058
             }
         },
-        "on_error": [
-            "左上角"
-        ],
         "next": [
             "主菜单"
+        ],
+        "on_error": [
+            "左上角"
         ]
     },
     "战斗结束缓冲": {
@@ -618,8 +643,8 @@
         "timeout": 5000,
         "__mpe_code": {
             "position": {
-                "x": 1160,
-                "y": 298
+                "x": 4640,
+                "y": 665
             }
         },
         "next": [
@@ -644,8 +669,8 @@
         "timeout": 65000,
         "__mpe_code": {
             "position": {
-                "x": 634,
-                "y": 114
+                "x": 4060,
+                "y": 665
             }
         },
         "next": [
@@ -664,8 +689,8 @@
         "timeout": 50000,
         "__mpe_code": {
             "position": {
-                "x": -338,
-                "y": -237
+                "x": 3480,
+                "y": 447
             }
         },
         "next": [
@@ -673,6 +698,7 @@
             "选择阵型2"
         ],
         "on_error": [
+            "罗盘",
             "战斗中"
         ]
     },
@@ -698,12 +724,67 @@
         },
         "__mpe_code": {
             "position": {
-                "x": -26,
-                "y": 187
+                "x": 3770,
+                "y": 650
             }
         },
         "next": [
             "战斗中"
+        ]
+    },
+    "出击开始后中间结点": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "timeout": 20000,
+        "__mpe_code": {
+            "position": {
+                "x": 2610,
+                "y": 293
+            }
+        },
+        "next": [
+            "空油弹",
+            "存在大破",
+            "出击开始"
+        ],
+        "interrupt": [
+            "罗盘"
+        ]
+    },
+    "出击开始_longpress": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [
+                    452,
+                    521,
+                    122,
+                    21
+                ]
+            }
+        },
+        "timeout": 8000,
+        "__mpe_code": {
+            "position": {
+                "x": 2320,
+                "y": 159
+            }
+        },
+        "next": [
+            "罗盘"
+        ],
+        "on_error": [
+            "出击开始后中间结点"
         ]
     }
 }
