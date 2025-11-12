@@ -97,7 +97,7 @@ class AutoExpedition(CustomAction):
             logger.warning("远征线程未能正常停止")
             return CustomAction.RunResult(success=False)
         else:
-            logger.info("✅ 远征系统已停止")
+            logger.info(" 远征系统已停止")
             return CustomAction.RunResult(success=True)
 
 
@@ -140,7 +140,7 @@ def check_expedition_complete(fleet_id: int, context: Context = None) -> bool:
 # 收取奖励
 # ===============================
 def collect_expedition(fleet_id: int, context: Context = None):
-    logger.info(f"💰 收取第 {fleet_id} 队远征奖励")
+    logger.info(f" 收取第 {fleet_id} 队远征奖励")
     if context:
         try:
             context.run_task(f"CollectExpedition_{fleet_id}")
@@ -153,7 +153,7 @@ def collect_expedition(fleet_id: int, context: Context = None):
 def start_expedition(fleet_id: int, duration: int, context: Context = None):
     now = time.time()
     finish_time = now + duration
-    logger.info(f"🚢 第 {fleet_id} 队开始远征（{duration}s）")
+    logger.info(f" 第 {fleet_id} 队开始远征（{duration}s）")
     if context:
         try:
             context.run_task(f"StartExpedition_{fleet_id}")
@@ -174,7 +174,7 @@ def run_task_background(task_conf, context: Context, stop_event: threading.Event
         stop_event: 停止事件信号
     """
     logger.info("="*50)
-    logger.info("🚀 远征系统后台线程启动")
+    logger.info(" 远征系统后台线程启动")
     logger.info("="*50)
     
     fleets = task_conf["option"]["fleets"]
@@ -206,12 +206,12 @@ def run_task_background(task_conf, context: Context, stop_event: threading.Event
             # 等待到下次检测时间
             if now < info["next_check_time"]:
                 remain = int(info["next_check_time"] - now)
-                logger.debug(f"⏳ 第 {fid} 队剩余 {remain}s")
+                logger.debug(f" 第 {fid} 队剩余 {remain}s")
                 continue
 
             # 如果时间到了，进行检测
             if info["status"] == "running" and now >= info["finish_time"]:
-                logger.info(f"� 检测第 {fid} 队是否远征完成...")
+                logger.info(f" 检测第 {fid} 队是否远征完成...")
                 
                 if check_expedition_complete(fid, context):
                     collect_expedition(fid, context)
@@ -224,7 +224,7 @@ def run_task_background(task_conf, context: Context, stop_event: threading.Event
                     })
                 else:
                     # 没检测到完成，稍后再试
-                    logger.warning(f"❌ 第 {fid} 队未检测到完成标志，{check_interval}s 后重试。")
+                    logger.warning(f" 第 {fid} 队未检测到完成标志，{check_interval}s 后重试。")
                     state[fid]["next_check_time"] = now + check_interval
 
         # 短暂休眠，避免CPU占用过高
@@ -266,12 +266,12 @@ def run_task(task_conf, context: Context = None):
             # 等待到下次检测时间
             if now < info["next_check_time"]:
                 remain = int(info["next_check_time"] - now)
-                logger.info(f"⏳ 第 {fid} 队剩余 {remain}s")
+                logger.info(f" 第 {fid} 队剩余 {remain}s")
                 continue
 
             # 如果时间到了，进行检测
             if info["status"] == "running" and now >= info["finish_time"]:
-                logger.info(f"🔍 检测第 {fid} 队是否远征完成...")
+                logger.info(f" 检测第 {fid} 队是否远征完成...")
                 
                 if check_expedition_complete(fid, context):
                     collect_expedition(fid, context)
@@ -284,7 +284,7 @@ def run_task(task_conf, context: Context = None):
                     })
                 else:
                     # 没检测到完成，稍后再试
-                    logger.warning(f"❌ 第 {fid} 队未检测到完成标志，{check_interval}s 后重试。")
+                    logger.warning(f" 第 {fid} 队未检测到完成标志，{check_interval}s 后重试。")
                     state[fid]["next_check_time"] = now + check_interval
 
         logger.info("------")
