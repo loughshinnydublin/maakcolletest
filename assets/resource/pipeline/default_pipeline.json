@@ -73,5 +73,12 @@
                 "exp3"
             ]
         }
+    },
+    "StartCombinedTasks": {
+        "action": "Custom",
+        "custom_action": "combinedtest",
+        "next": [
+            "Screenshot"
+        ]
     }
 }

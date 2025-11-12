@@ -32,25 +32,12 @@
     },
     "task": [
         {
-            "name": "普通任务",
-            "entry": "MyTask1"
-        },
-        {
-            "name": "选项任务",
-            "entry": "MyTask2",
-            "option": [
-                "任务选项1"
-            ]
-        },
-        {
-            "name": "参数任务",
-            "entry": "test_option",
-            "option": [
-                "exp1",
-                "exp2",
-                "exp3"
+            "name": "远征参数测试",
+            "entry": "test_expedition",
+            "option": [],
+            "advanced": [
+                "远征（自定义）"
             ],
-            "pipeline_override": {}
         },
         {
             "name": "带Custom的任务",
@@ -61,26 +48,61 @@
             "entry": "start"
         }
     ],
-    "option": {
-        "任务选项1": {
-            "cases": [
-                {
-                    "name": "文本1",
-                    "pipeline_override": {
-                        "OcrTask": {
-                            "text": "文本1"
-                        }
-                    }
-                },
-                {
-                    "name": "文本2",
-                    "pipeline_override": {
-                        "OcrTask": {
-                            "text": "文本2"
+    "option": {},
+    "advanced": {
+        "持续时长": {
+            "field": [
+                "持续时间/分钟"
+            ],
+            "type": [
+                "int"
+            ],
+            "default": [
+                "0"
+            ],
+            "pipeline_override": {
+                "AllIn": {
+                    "action": {
+                        "param": {
+                            "custom_action_param": {
+                                "target_count": "{持续时间/分钟}"
+                            }
                         }
                     }
                 }
-            ]
+            },
+            "doc": "持续时间，0表示无限制"
+        },
+        "远征（自定义）": {
+            "field": [
+                "2队",
+                "3队",
+                "4队"
+            ],
+            "type": [
+                "string",
+                "string",
+                "string"
+            ],
+            "default": [
+                "0",
+                "0",
+                "0"
+            ],
+            "doc": "填写远征编号，0则不远征",
+            "pipeline_override": {
+                "AutoExpedition": {
+                    "action": {
+                        "param": {
+                            "custom_action_param": {
+                                "exp1": "{2队}",
+                                "exp2": "{3队}",
+                                "exp3": "{4队}"
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

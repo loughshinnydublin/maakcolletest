@@ -283,7 +283,7 @@ def main():
         os.chdir(Path("../assets"))
         logger.info(f"set cwd: {os.getcwd()}")
 
-    # agent(is_dev_mode=is_dev_mode)
+    agent(is_dev_mode=is_dev_mode)
 
     # check_and_install_dependencies()
     # agent()
