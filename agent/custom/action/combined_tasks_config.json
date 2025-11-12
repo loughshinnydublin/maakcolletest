@@ -1,0 +1,150 @@
+{
+    "说明": "远征 + 5-2出击 组合任务配置示例",
+    "Pipeline配置": {
+        "StartCombinedTasks": {
+            "action": "Custom",
+            "custom_action": "AutoCombinedTasks",
+            "custom_action_param": "{\"mode\": \"start\", \"expedition_config\": {\"fleets\": [{\"id\": 2, \"duration\": 720}, {\"id\": 5, \"duration\": 1200}], \"check_interval\": 10}, \"combat_config\": {\"map\": \"5-2\", \"interval\": 5}}"
+        },
+        "StopCombinedTasks": {
+            "action": "Custom",
+            "custom_action": "AutoCombinedTasks",
+            "custom_action_param": "{\"mode\": \"stop\"}"
+        }
+    },
+    "参数说明": {
+        "mode": {
+            "类型": "string",
+            "可选值": [
+                "start",
+                "stop"
+            ],
+            "说明": "start=启动组合任务, stop=停止所有任务"
+        },
+        "expedition_config": {
+            "说明": "远征配置",
+            "字段": {
+                "fleets": "舰队列表，每个包含 id 和 duration",
+                "check_interval": "检测间隔（秒）"
+            }
+        },
+        "combat_config": {
+            "说明": "出击配置",
+            "字段": {
+                "map": "地图名称（如 5-2）",
+                "interval": "出击间隔（秒）"
+            }
+        }
+    },
+    "工作流程": {
+        "步骤1": "启动组合任务",
+        "步骤2": "远征线程和5-2线程同时运行",
+        "步骤3": "当检测到远征完成时：",
+        "步骤3.1": "  → 暂停5-2出击",
+        "步骤3.2": "  → 收取远征奖励",
+        "步骤3.3": "  → 派出新的远征",
+        "步骤3.4": "  → 恢复5-2出击",
+        "步骤4": "重复步骤2-3"
+    },
+    "时间轴示例": {
+        "说明": "展示远征和5-2如何协调",
+        "00:00": "启动任务",
+        "00:00-12:00": "5-2持续出击 + 远征2队在后台",
+        "12:00": "远征2队完成 → 暂停5-2",
+        "12:01": "收取2队奖励",
+        "12:02": "派出2队新远征",
+        "12:03": "恢复5-2出击",
+        "12:03-20:00": "5-2持续出击 + 远征继续",
+        "20:00": "远征5队完成 → 暂停5-2",
+        "循环": "持续运行..."
+    },
+    "关键设计": {
+        "线程协调": {
+            "机制": "使用 threading.Event 控制暂停和恢复",
+            "combat_pause_event.set()": "允许5-2出击",
+            "combat_pause_event.clear()": "暂停5-2出击",
+            "combat_pause_event.wait()": "5-2线程等待事件被设置"
+        },
+        "暂停时机": {
+            "远征完成检测到": "立即暂停5-2",
+            "收取奖励中": "5-2保持暂停",
+            "派出远征中": "5-2保持暂停",
+            "派出完成": "恢复5-2出击"
+        }
+    },
+    "Pipeline示例_完整流程": {
+        "MainTask": {
+            "next": [
+                "StartCombinedTasks"
+            ]
+        },
+        "StartCombinedTasks": {
+            "action": "Custom",
+            "custom_action": "AutoCombinedTasks",
+            "custom_action_param": "{\"mode\": \"start\", \"expedition_config\": {\"fleets\": [{\"id\": 2, \"duration\": 720}, {\"id\": 5, \"duration\": 1200}, {\"id\": 6, \"duration\": 900}], \"check_interval\": 10}, \"combat_config\": {\"map\": \"5-2\", \"interval\": 5}}",
+            "说明": "启动组合任务，后台运行，不阻塞"
+        }
+    },
+    "识别任务配置": {
+        "CheckExpeditionComplete_2": {
+            "recognition": "TemplateMatch",
+            "template": "远征完成_2队.png",
+            "roi": [
+                100,
+                200,
+                300,
+                150
+            ],
+            "threshold": 0.8
+        },
+        "CheckExpeditionComplete_5": {
+            "recognition": "TemplateMatch",
+            "template": "远征完成_5队.png",
+            "roi": [
+                100,
+                400,
+                300,
+                150
+            ],
+            "threshold": 0.8
+        },
+        "CollectExpedition_2": {
+            "action": "Click",
+            "target": "收取按钮_2队",
+            "next": [
+                "确认收取_2"
+            ]
+        },
+        "StartExpedition_2": {
+            "action": "Click",
+            "target": "远征选择",
+            "next": [
+                "选择远征",
+                "确认派出_2"
+            ]
+        },
+        "Combat_5-2": {
+            "next": [
+                "进入5-2",
+                "选择阵型",
+                "开始战斗",
+                "等待战斗结束",
+                "返回"
+            ]
+        }
+    },
+    "注意事项": [
+        "1. 远征收取和派出时会自动暂停5-2，完成后自动恢复",
+        "2. 两个线程独立运行，互不阻塞",
+        "3. 使用 stop 命令可以停止所有任务",
+        "4. 暂停机制确保远征操作不会与5-2冲突",
+        "5. 建议远征检测间隔设置为10秒，5-2间隔设置为5秒"
+    ],
+    "优势": [
+        "✅ 两个任务并发执行，效率最大化",
+        "✅ 远征收取时自动暂停5-2，避免冲突",
+        "✅ 派出完成后立即恢复5-2，无浪费时间",
+        "✅ 使用线程事件机制，协调精确",
+        "✅ 后台运行，不阻塞主流程"
+    ]
+}

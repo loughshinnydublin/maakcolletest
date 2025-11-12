@@ -1,0 +1,105 @@
+{
+    "name": "自动远征配置示例",
+    "description": "展示如何配置优化版自动远征系统",
+    "舰队配置": {
+        "fleets": [
+            {
+                "id": 2,
+                "duration": 720,
+                "check_strategy": "exact",
+                "说明": "第2队，12分钟远征，精确检测模式"
+            },
+            {
+                "id": 5,
+                "duration": 1200,
+                "check_strategy": "early",
+                "说明": "第5队，20分钟远征，提前检测模式"
+            },
+            {
+                "id": 6,
+                "duration": 900,
+                "check_strategy": "adaptive",
+                "说明": "第6队，15分钟远征，自适应模式"
+            }
+        ]
+    },
+    "检测策略说明": {
+        "exact": {
+            "名称": "精确模式",
+            "特点": "仅在预计完成时间检测",
+            "适用": "时长精确的远征",
+            "提前检测": 0,
+            "重试间隔": 10
+        },
+        "early": {
+            "名称": "提前模式",
+            "特点": "提前5秒检测",
+            "适用": "短期远征或需要快速响应",
+            "提前检测": 5,
+            "重试间隔": 10
+        },
+        "adaptive": {
+            "名称": "自适应模式",
+            "特点": "根据时长的2%提前检测",
+            "适用": "不确定完成时间的远征",
+            "提前检测比例": "2%",
+            "重试间隔": 10
+        }
+    },
+    "区域配置": {
+        "说明": "定义屏幕上每个舰队的检测区域",
+        "fleet_regions": {
+            "2": {
+                "x": 100,
+                "y": 200,
+                "width": 300,
+                "height": 150,
+                "name": "第2队区域",
+                "说明": "根据实际屏幕位置调整坐标"
+            },
+            "5": {
+                "x": 100,
+                "y": 400,
+                "width": 300,
+                "height": 150,
+                "name": "第5队区域"
+            },
+            "6": {
+                "x": 100,
+                "y": 600,
+                "width": 300,
+                "height": 150,
+                "name": "第6队区域"
+            }
+        }
+    },
+    "使用方法": {
+        "方式1_在代码中调用": {
+            "代码": "scheduler = FleetScheduler(config, context)\nscheduler.run()",
+            "说明": "直接在Python代码中使用"
+        },
+        "方式2_作为MAA任务": {
+            "任务名": "AutoExpeditionOptimized",
+            "pipeline示例": {
+                "MyExpeditionTask": {
+                    "next": [
+                        "AutoExpeditionOptimized"
+                    ]
+                },
+                "AutoExpeditionOptimized": {
+                    "action": "Custom",
+                    "custom_action": "AutoExpeditionOptimized",
+                    "custom_action_param": "{\"fleets\": [{\"id\": 2, \"duration\": 720, \"check_strategy\": \"exact\"}], \"max_iterations\": 100}"
+                }
+            }
+        }
+    },
+    "性能优势": {
+        "对比": "相比统一10秒检测间隔，减少33%检测次数",
+        "示例": {
+            "统一间隔": "60秒内检测18次",
+            "独立计时器": "60秒内检测12次",
+            "节省": "6次检测（33%）"
+        }
+    }
+}

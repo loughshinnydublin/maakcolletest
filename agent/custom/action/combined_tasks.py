@@ -95,7 +95,7 @@ class AutoCombinedTasks(CustomAction):
         combat_thread.start()
         
         logger.info("="*60)
-        logger.info("✅ 组合任务已启动")
+        logger.info(" 组合任务已启动")
         logger.info("  - 远征线程：后台运行")
         logger.info("  - 5-2出击线程：后台运行")
         logger.info("  - 远征收取时会自动暂停出击")
@@ -122,7 +122,7 @@ class AutoCombinedTasks(CustomAction):
                 if thread.is_alive():
                     logger.warning(f"{name}未能正常停止")
                 else:
-                    logger.info(f"✅ {name}已停止")
+                    logger.info(f" {name}已停止")
         
         return CustomAction.RunResult(success=True)
 
@@ -273,14 +273,14 @@ def combat_loop(
             break
         
         # 执行一次5-2出击
-        logger.info(f"[5-2] 🎯 开始出击 {map_name}")
+        logger.info(f"[5-2]  开始出击 {map_name}")
         
         try:
             # 执行出击任务
             run_combat_once(context, map_name)
-            logger.info(f"[5-2] ✅ 出击完成")
+            logger.info(f"[5-2]  出击完成")
         except Exception as e:
-            logger.error(f"[5-2] ❌ 出击出错: {e}")
+            logger.error(f"[5-2]  出击出错: {e}")
         
         # 等待一段时间再继续
         for _ in range(interval):
@@ -296,13 +296,13 @@ def combat_loop(
 # ===============================
 def pause_combat_for_expedition(combat_pause_event: threading.Event, reason: str):
     """暂停5-2出击（用于远征收取和派出）"""
-    logger.info(f"[协调] ⏸️  暂停5-2出击 - {reason}")
+    logger.info(f"[协调]   暂停5-2出击 - {reason}")
     combat_pause_event.clear()  # 清除事件，阻塞5-2线程
     time.sleep(0.5)  # 给5-2线程一点时间停下来
 
 def resume_combat(combat_pause_event: threading.Event, reason: str):
     """恢复5-2出击"""
-    logger.info(f"[协调] ▶️  恢复5-2出击 - {reason}")
+    logger.info(f"[协调]   恢复5-2出击 - {reason}")
     combat_pause_event.set()  # 设置事件，允许5-2继续
 
 
@@ -320,7 +320,7 @@ def check_expedition_complete(fleet_id: int, context: Context) -> bool:
 
 def collect_expedition(fleet_id: int, context: Context):
     """收取远征奖励"""
-    logger.info(f"[远征] 💰 收取第{fleet_id}队奖励")
+    logger.info(f"[远征]  收取第{fleet_id}队奖励")
     try:
         context.run_task(f"CollectExpedition_{fleet_id}")
     except Exception as e:
@@ -330,7 +330,7 @@ def start_expedition(fleet_id: int, duration: int, context: Context) -> float:
     """派出远征"""
     now = time.time()
     finish_time = now + duration
-    logger.info(f"[远征] 🚢 第{fleet_id}队开始远征（{duration}秒 = {duration//60}分钟）")
+    logger.info(f"[远征]  第{fleet_id}队开始远征（{duration}秒 = {duration//60}分钟）")
     try:
         context.run_task(f"StartExpedition_{fleet_id}")
     except Exception as e:

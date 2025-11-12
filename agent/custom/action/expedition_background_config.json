@@ -1,0 +1,174 @@
+{
+    "说明": "自动远征 - 后台/前台模式配置示例",
+    "示例1_后台模式_启动远征": {
+        "任务名": "远征-启动",
+        "pipeline": {
+            "远征-启动": {
+                "action": "Custom",
+                "custom_action": "AutoExpedition",
+                "custom_action_param": "{\"mode\": \"start\", \"background\": true}",
+                "next": [
+                    "其他任务1"
+                ]
+            },
+            "其他任务1": {
+                "action": "Click",
+                "target": "某个按钮",
+                "next": [
+                    "其他任务2"
+                ]
+            },
+            "其他任务2": {
+                "recognition": "OCR",
+                "expected": "目标文字"
+            }
+        },
+        "说明": "启动后台远征，然后立即执行其他任务1、其他任务2，远征在后台持续运行"
+    },
+    "示例2_前台模式_阻塞执行": {
+        "任务名": "远征-前台",
+        "pipeline": {
+            "远征-前台": {
+                "action": "Custom",
+                "custom_action": "AutoExpedition",
+                "custom_action_param": "{\"mode\": \"start\", \"background\": false}",
+                "next": [
+                    "远征结束后的任务"
+                ]
+            },
+            "远征结束后的任务": {
+                "action": "Click",
+                "target": "返回按钮"
+            }
+        },
+        "说明": "前台运行，远征完成后才会执行'远征结束后的任务'"
+    },
+    "示例3_停止后台远征": {
+        "任务名": "远征-停止",
+        "pipeline": {
+            "某个任务": {
+                "action": "Click",
+                "target": "按钮",
+                "next": [
+                    "停止远征"
+                ]
+            },
+            "停止远征": {
+                "action": "Custom",
+                "custom_action": "AutoExpedition",
+                "custom_action_param": "{\"mode\": \"stop\"}",
+                "next": [
+                    "后续任务"
+                ]
+            }
+        },
+        "说明": "停止后台运行的远征系统"
+    },
+    "示例4_完整流程": {
+        "任务名": "完整流程",
+        "pipeline": {
+            "1-初始化": {
+                "action": "Click",
+                "target": "进入游戏",
+                "next": [
+                    "2-启动后台远征"
+                ]
+            },
+            "2-启动后台远征": {
+                "action": "Custom",
+                "custom_action": "AutoExpedition",
+                "custom_action_param": "{\"mode\": \"start\", \"background\": true}",
+                "next": [
+                    "3-日常任务"
+                ]
+            },
+            "3-日常任务": {
+                "action": "Click",
+                "target": "日常任务入口",
+                "next": [
+                    "4-做任务1",
+                    "5-做任务2",
+                    "6-做任务3"
+                ]
+            },
+            "4-做任务1": {
+                "recognition": "TemplateMatch",
+                "template": "任务1.png",
+                "next": [
+                    "7-任务完成"
+                ]
+            },
+            "5-做任务2": {
+                "recognition": "TemplateMatch",
+                "template": "任务2.png",
+                "next": [
+                    "7-任务完成"
+                ]
+            },
+            "6-做任务3": {
+                "recognition": "TemplateMatch",
+                "template": "任务3.png",
+                "next": [
+                    "7-任务完成"
+                ]
+            },
+            "7-任务完成": {
+                "action": "Click",
+                "target": "返回",
+                "next": [
+                    "8-停止远征"
+                ]
+            },
+            "8-停止远征": {
+                "action": "Custom",
+                "custom_action": "AutoExpedition",
+                "custom_action_param": "{\"mode\": \"stop\"}"
+            }
+        },
+        "说明": "启动后台远征 → 执行其他日常任务 → 任务完成后停止远征"
+    },
+    "参数说明": {
+        "mode": {
+            "类型": "string",
+            "可选值": [
+                "start",
+                "stop"
+            ],
+            "默认": "start",
+            "说明": "start=启动远征, stop=停止远征"
+        },
+        "background": {
+            "类型": "boolean",
+            "默认": true,
+            "说明": "true=后台运行（不阻塞）, false=前台运行（阻塞）"
+        }
+    },
+    "工作原理": {
+        "后台模式": {
+            "机制": "启动独立线程运行远征系统",
+            "特点": [
+                "不阻塞主流程",
+                "其他任务可以同时执行",
+                "远征在后台持续运行",
+                "主程序退出时自动停止"
+            ],
+            "适用场景": "需要同时执行远征和其他任务"
+        },
+        "前台模式": {
+            "机制": "在当前线程中运行",
+            "特点": [
+                "阻塞执行",
+                "等待远征完成后才继续",
+                "兼容原有逻辑"
+            ],
+            "适用场景": "只运行远征，不需要其他任务"
+        }
+    },
+    "注意事项": [
+        "1. 后台模式启动后，远征系统会一直运行直到手动停止或程序退出",
+        "2. 可以多次调用其他任务，远征在后台自动管理",
+        "3. 建议在程序结束前调用 stop 停止后台远征",
+        "4. 日志中可以看到 [ExpeditionThread] 标记的后台远征信息",
+        "5. 后台模式使用守护线程，主程序退出时会自动停止"
+    ]
+}
