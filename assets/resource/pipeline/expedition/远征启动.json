@@ -14,6 +14,6 @@
         "rate_limit": 1000,
         "post_delay": 500,
         "on_error": "Screenshot"
-    },
+    }
 }
 // 远征编号
